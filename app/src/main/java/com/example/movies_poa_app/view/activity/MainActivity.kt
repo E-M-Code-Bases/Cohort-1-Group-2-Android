@@ -33,7 +33,7 @@ class MainActivity : AppCompatActivity() {
         viewPager.adapter = PagerAdapter(this)
         TabLayoutMediator(tabLayout, viewPager) { tab, index ->
             tab.text = when (index) {
-                0 -> "List Movies"
+                0 -> "Top Rated"
                 1 -> "Now Playing"
                 2 -> "Upcoming"
                 3 -> "Popular"

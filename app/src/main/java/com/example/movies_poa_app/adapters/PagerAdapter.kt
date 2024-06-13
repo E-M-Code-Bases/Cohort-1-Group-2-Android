@@ -5,7 +5,7 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentActivity
 import androidx.viewpager2.adapter.FragmentStateAdapter
 import com.example.movies_poa_app.view.fragments.AddFavouriteFragment
-import com.example.movies_poa_app.view.fragments.ListMoviesFragment
+import com.example.movies_poa_app.view.fragments.TopRatedFragment
 import com.example.movies_poa_app.view.fragments.NowPlayingFragment
 import com.example.movies_poa_app.view.fragments.PopularFragment
 import com.example.movies_poa_app.view.fragments.ShowDetailsFragment
@@ -20,7 +20,7 @@ class PagerAdapter(fragmentActivity: FragmentActivity):FragmentStateAdapter(frag
     override fun createFragment(position: Int): Fragment {
 return  when(position){
     0 -> {
-        ListMoviesFragment()
+        TopRatedFragment()
     }
     1 -> {
         NowPlayingFragment()
