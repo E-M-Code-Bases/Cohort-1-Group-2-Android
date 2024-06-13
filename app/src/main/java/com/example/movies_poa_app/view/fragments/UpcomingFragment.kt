@@ -11,22 +11,13 @@ import com.example.movies_poa_app.viewModel.UpcomingViewModel
 
 class UpcomingFragment : Fragment() {
 
-    companion object {
-        fun newInstance() = UpcomingFragment()
-    }
-
-    private val viewModel: UpcomingViewModel by viewModels()
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-
-        // TODO: Use the ViewModel
-    }
-
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?,
-    ): View {
+        savedInstanceState: Bundle?
+    ): View? {
+        // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_upcoming, container, false)
     }
+
+
 }

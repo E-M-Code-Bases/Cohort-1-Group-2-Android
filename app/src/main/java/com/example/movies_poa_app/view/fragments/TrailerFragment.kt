@@ -11,18 +11,6 @@ import com.example.movies_poa_app.viewModel.TrailerViewModel
 
 class TrailerFragment : Fragment() {
 
-    companion object {
-        fun newInstance() = TrailerFragment()
-    }
-
-    private val viewModel: TrailerViewModel by viewModels()
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-
-        // TODO: Use the ViewModel
-    }
-
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?,

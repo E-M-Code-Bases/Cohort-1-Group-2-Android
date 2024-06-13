@@ -9,24 +9,14 @@ import android.view.ViewGroup
 import com.example.movies_poa_app.R
 import com.example.movies_poa_app.viewModel.PopularViewModel
 
+
 class PopularFragment : Fragment() {
-
-    companion object {
-        fun newInstance() = PopularFragment()
-    }
-
-    private val viewModel: PopularViewModel by viewModels()
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-
-        // TODO: Use the ViewModel
-    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?,
-    ): View {
+        savedInstanceState: Bundle?
+    ): View? {
+        // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_popular, container, false)
     }
 }
