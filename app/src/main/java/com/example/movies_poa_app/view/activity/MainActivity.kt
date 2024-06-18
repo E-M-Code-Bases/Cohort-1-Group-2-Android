@@ -25,7 +25,7 @@ class MainActivity : AppCompatActivity() {
 
         val toolbar: Toolbar = findViewById(R.id.toolbar)
         setSupportActionBar(toolbar)
-        supportActionBar?.setDisplayShowTitleEnabled(false) // Disable default title
+        supportActionBar?.setDisplayShowTitleEnabled(false)
 
         tabLayout = findViewById(R.id.tabLayout)
         viewPager = findViewById(R.id.viewPager)
@@ -37,9 +37,7 @@ class MainActivity : AppCompatActivity() {
                 1 -> "Now Playing"
                 2 -> "Upcoming"
                 3 -> "Popular"
-                4 -> "Show Details"
-                5 -> "Add Favourite"
-                6 -> "Trailer"
+                4 -> "Trailer"
                 else -> throw NotFoundException("Not Found")
             }
         }.attach()
