@@ -1,22 +1,32 @@
 package com.example.movies_poa_app.view.fragments
 
-import androidx.fragment.app.viewModels
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.databinding.DataBindingUtil
+import androidx.fragment.app.Fragment
+import com.example.movieapp.viewmodel.PopularViewModel
 import com.example.movies_poa_app.R
-import com.example.movies_poa_app.viewModel.PopularViewModel
-
+import com.example.movies_poa_app.databinding.FragmentPopularBinding
+import org.koin.androidx.viewmodel.ext.android.sharedViewModel
 
 class PopularFragment : Fragment() {
+
+    private val viewModel: PopularViewModel by sharedViewModel()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_popular, container, false)
+        val binding: FragmentPopularBinding = DataBindingUtil.inflate(
+            inflater, R.layout.fragment_popular, container, false
+        )
+        binding.viewModel = viewModel
+        binding.lifecycleOwner = viewLifecycleOwner
+
+        viewModel.fetchPopularMovies("your_api_key")
+
+        return binding.root
     }
 }
