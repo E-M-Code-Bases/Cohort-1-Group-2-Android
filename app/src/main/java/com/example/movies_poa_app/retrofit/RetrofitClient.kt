@@ -27,5 +27,12 @@ object RetrofitClient {
     }
 }
 
+val retrofit: Retrofit = Retrofit.Builder()
+    .baseUrl("https://api.themoviedb.org/3/")
+    .addConverterFactory(MoshiConverterFactory.create())
+    .build()
+val ApiService: TMDBApiService = retrofit.create(TMDBApiService::class.java)
+
+
 
 
