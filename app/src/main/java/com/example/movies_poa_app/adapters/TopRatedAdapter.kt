@@ -1,4 +1,6 @@
-package com.example.movies_poa_app.model
+package com.example.movies_poa_app.adapters
+
+import com.example.movies_poa_app.model.Movie
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil

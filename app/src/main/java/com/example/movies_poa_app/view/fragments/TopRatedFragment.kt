@@ -8,8 +8,8 @@ import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.movies_poa_app.R
+import com.example.movies_poa_app.adapters.TopRatedAdapter
 import com.example.movies_poa_app.databinding.FragmentTopRatedBinding
-import com.example.movies_poa_app.model.TopRatedAdapter
 import com.example.movies_poa_app.viewModel.TopRatedViewModel
 
 class TopRatedFragment : Fragment() {
@@ -34,8 +34,8 @@ class TopRatedFragment : Fragment() {
        recyclerView.adapter = adapter
 
        viewModel.movies.observe(viewLifecycleOwner) {
-           it?.let {
-               adapter.submitList(it)
+           it?.let { movieList ->
+               adapter.submitList(movieList)
            }
        }
    }
