@@ -34,7 +34,7 @@
             app:layout_constraintStart_toEndOf="@id/movie_poster"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintMarginStart="8dp"
-            android:text="@{movie.title}" />
+             />
 
         <TextView
             android:id="@+id/movie_rating"
