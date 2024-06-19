@@ -32,12 +32,6 @@ return  when(position){
         PopularFragment()
     }
     4 -> {
-        ShowDetailsFragment()
-    }
-    5 -> {
-        AddFavouriteFragment()
-    }
-    6 -> {
         TrailerFragment()
     }
     else -> throw NotFoundException("Position Not Found")
