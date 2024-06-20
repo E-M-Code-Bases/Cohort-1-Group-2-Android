@@ -33,6 +33,14 @@ interface ApiService {
         @Query("api_key") apiKey: String,
         @Query("session_id") sessionId: String,
         @Body favoriteRequest: FavoriteRequest): Response<Unit>
+
+    @GET("movie/now_playing")
+    suspend fun getNowPlaying(
+        @Query("api_key") apiKey: String,
+        @Query("language") language: String,
+        @Query("page") page: Int
+    ): Response<MovieResponse>
+
 }
 
 
