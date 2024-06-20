@@ -1,12 +1,7 @@
 package com.example.movies_poa_app.retrofit
 
 import com.example.movies_poa_app.model.MovieResponse
-import io.reactivex.rxjava3.core.Single
 import com.example.movies_poa_app.model.FavoriteRequest
-import com.example.movies_poa_app.model.Movie
-import com.example.movies_poa_app.model.MovieResponse
-import com.example.movies_poa_app.model.TopRatedMovies
-import com.example.movies_poa_app.model.TopRatedMoviesResponse
 import retrofit2.Response
 import retrofit2.http.Body
 import retrofit2.http.GET
@@ -19,9 +14,7 @@ interface ApiService {
     @GET("movie/popular")
     fun getPopularMovies(
         @Query("c86b2436b1121f1894caf99d7c17452d") apiKey: String,
-        @Query("page") page: Int
-    ): Single<MovieResponse>
-
+    )
 
     @GET("movie/upcoming")
     suspend fun getUpcoming(
@@ -33,12 +26,11 @@ interface ApiService {
         @Query("c86b2436b1121f1894caf99d7c17452d") apiKey: String,
         @Query("query") query: String
     ): MovieResponse
-}
-    @GET("/movie/upcoming")
-    suspend fun getUpcoming(@Query("c86b2436b1121f1894caf99d7c17452d") apiKey: String): Movie
+
 
     @GET("movie/top_rated")
-    suspend fun getTopRatedMovies(@Query("a46d79ac5127fe803aabf6513cafe146") apiKey: String): TopRatedMoviesResponse
+    suspend fun getTopRatedMovies(
+        @Query("a46d79ac5127fe803aabf6513cafe146") apiKey: String)
 
 
 

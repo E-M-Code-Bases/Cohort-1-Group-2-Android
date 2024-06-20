@@ -5,6 +5,7 @@ import com.example.movies_poa_app.viewModel.FavouritesViewModel
 import com.example.movies_poa_app.viewModel.PopularViewModel
 import com.example.movies_poa_app.viewModel.NowPlayingViewModel
 import com.example.movies_poa_app.viewModel.TopRatedViewModel
+
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import org.koin.androidx.viewmodel.dsl.viewModel
