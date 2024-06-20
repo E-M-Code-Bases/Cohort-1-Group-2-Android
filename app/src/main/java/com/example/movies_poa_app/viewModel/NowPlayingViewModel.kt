@@ -1,10 +1,15 @@
 package com.example.movies_poa_app.viewModel
 
 import androidx.lifecycle.ViewModel
+import com.example.movies_poa_app.repository.MovieRepository
 
-class NowPlayingViewModel(get: Any) : ViewModel() {
-    var posterPath: String = ""
-    var voteAverage: Double = 0.0
-    var overview: String = ""
+class NowPlayingViewModel (private val movieRepository: MovieRepository)  : ViewModel() {
+
+
+    fun fetchMovies(apiKey: String) {
+        movieRepository.getNowPlaying(apiKey)
+
+    }
+
 
 }
