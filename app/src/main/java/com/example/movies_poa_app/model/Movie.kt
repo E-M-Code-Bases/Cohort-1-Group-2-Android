@@ -12,11 +12,10 @@ data class Movie(
 )
 
 data class FavoriteRequest(
-    val mediaType: String,
-    val mediaId: Int,
+    val media_type: String,
+    val media_id: Int,
     val favorite: Boolean
 )
+data class MovieResponse (val results:List<Movie>)
 
-
-data class MovieResponse (val results: List<Movie>)
 
