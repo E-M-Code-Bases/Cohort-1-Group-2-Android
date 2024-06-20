@@ -28,6 +28,4 @@ data class FavoriteRequest(
     val favorite: Boolean
 )
 
-data class MovieResponse (
-    val results: List<Movie>
-)
+
