@@ -1,32 +1,56 @@
 package com.example.movies_poa_app.view.fragments
 
 import android.os.Bundle
+import android.text.Editable
+import android.text.TextWatcher
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
-import com.example.movieapp.viewmodel.PopularViewModel
-import com.example.movies_poa_app.R
+import androidx.fragment.app.viewModels
+import androidx.lifecycle.Observer
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.movies_poa_app.databinding.FragmentPopularBinding
-import org.koin.androidx.viewmodel.ext.android.sharedViewModel
+import com.example.movies_poa_app.adapters.MoviesAdapter
+import com.example.movies_poa_app.viewModel.PopularViewModel
 
 class PopularFragment : Fragment() {
 
-    private val viewModel: PopularViewModel by sharedViewModel()
+    private lateinit var binding: FragmentPopularBinding
+    private val viewModel: PopularViewModel by viewModels()
+    private lateinit var adapter: MoviesAdapter
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
-        val binding: FragmentPopularBinding = DataBindingUtil.inflate(
-            inflater, R.layout.fragment_popular, container, false
-        )
+    ): View {
+        binding = FragmentPopularBinding.inflate(inflater, container, false)
         binding.viewModel = viewModel
-        binding.lifecycleOwner = viewLifecycleOwner
+        binding.lifecycleOwner = this
 
-        viewModel.fetchPopularMovies("your_api_key")
+        setupRecyclerView()
+        setupSearch()
 
         return binding.root
+    }
+
+    private fun setupRecyclerView() {
+        adapter = MoviesAdapter()
+        binding.recyclerViewTopRated.layoutManager = LinearLayoutManager(context)
+        binding.recyclerViewTopRated.adapter = adapter
+
+        viewModel.popularMovies.observe(viewLifecycleOwner, Observer { movies ->
+            adapter.submitList(movies)
+        })
+    }
+
+    private fun setupSearch() {
+        binding.editTextSearch.addTextChangedListener(object : TextWatcher {
+            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {}
+            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {}
+            override fun afterTextChanged(s: Editable?) {
+                viewModel.searchMovies(s.toString())
+            }
+        })
     }
 }

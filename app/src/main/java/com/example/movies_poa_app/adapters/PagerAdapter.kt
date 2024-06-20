@@ -4,11 +4,9 @@ import android.content.res.Resources.NotFoundException
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentActivity
 import androidx.viewpager2.adapter.FragmentStateAdapter
-import com.example.movies_poa_app.view.fragments.AddFavouriteFragment
 import com.example.movies_poa_app.view.fragments.TopRatedFragment
 import com.example.movies_poa_app.view.fragments.NowPlayingFragment
 import com.example.movies_poa_app.view.fragments.PopularFragment
-import com.example.movies_poa_app.view.fragments.ShowDetailsFragment
 import com.example.movies_poa_app.view.fragments.TrailerFragment
 import com.example.movies_poa_app.view.fragments.UpcomingFragment
 
