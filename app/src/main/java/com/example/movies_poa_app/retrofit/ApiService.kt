@@ -1,12 +1,7 @@
 package com.example.movies_poa_app.retrofit
 
 import com.example.movies_poa_app.model.MovieResponse
-import io.reactivex.rxjava3.core.Single
 import com.example.movies_poa_app.model.FavoriteRequest
-import com.example.movies_poa_app.model.Movie
-import com.example.movies_poa_app.model.MovieResponse
-import com.example.movies_poa_app.model.TopRatedMovies
-import com.example.movies_poa_app.model.TopRatedMoviesResponse
 import retrofit2.Response
 import retrofit2.http.Body
 import retrofit2.http.GET
@@ -19,8 +14,7 @@ interface ApiService {
     @GET("movie/popular")
     fun getPopularMovies(
         @Query("c86b2436b1121f1894caf99d7c17452d") apiKey: String,
-        @Query("page") page: Int
-    ): Single<MovieResponse>
+    )
 
 
     @GET("movie/upcoming")
@@ -33,28 +27,30 @@ interface ApiService {
         @Query("c86b2436b1121f1894caf99d7c17452d") apiKey: String,
         @Query("query") query: String
     ): MovieResponse
-}
 
-    @GET("/movie/upcoming")
-    suspend fun getUpcoming(@Query("c86b2436b1121f1894caf99d7c17452d") apiKey: String): Movie
 
     @GET("movie/top_rated")
-    suspend fun getTopRatedMovies(@Query("a46d79ac5127fe803aabf6513cafe146") apiKey: String): TopRatedMoviesResponse
-
+    suspend fun getTopRatedMovies(
+        @Query(
+            "a46d79ac5127fe803aabf6513cafe146"
+        ) apiKey: String
+    ): MovieResponse
 
 
     @GET("account/{account_id}/favorite/movies")
     suspend fun getFavoriteMovies(
         @Path("account_id") accountId: Int,
         @Query("api_key") apiKey: String,
-        @Query("session_id") sessionId: String): Response<MovieResponse>
+        @Query("session_id") sessionId: String
+    ): Response<MovieResponse>
 
     @POST("account/{account_id}/favorite")
     suspend fun addFavoriteMovie(
         @Path("account_id") accountId: Int,
         @Query("api_key") apiKey: String,
         @Query("session_id") sessionId: String,
-        @Body favoriteRequest: FavoriteRequest): Response<Unit>
+        @Body favoriteRequest: FavoriteRequest
+    ): Response<Unit>
 
     @GET("movie/now_playing")
     suspend fun getNowPlaying(
