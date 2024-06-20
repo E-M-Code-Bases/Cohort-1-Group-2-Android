@@ -5,6 +5,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -23,6 +24,8 @@ class NowPlayingFragment : Fragment() {
         binding= DataBindingUtil.inflate(inflater,R.layout.fragment_now_playing,container,false)
 
          viewModel= ViewModelProvider(requireActivity()).get(NowPlayingViewModel::class.java)
+
+
         recyclerView= binding.nowplayingRecyclerview
         binding.nowplayingRecyclerview.layoutManager = LinearLayoutManager(requireContext())
 
