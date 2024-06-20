@@ -52,10 +52,13 @@ dependencies {
     implementation(libs.androidx.lifecycle.livedata.ktx)
     implementation(libs.androidx.lifecycle.viewmodel.ktx)
     implementation(libs.androidx.fragment.ktx)
+    implementation(libs.androidx.paging.common.android)
 
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
+:
+
 
     implementation ("org.jetbrains.kotlin:kotlin-stdlib:1.5.21")
     implementation("androidx.lifecycle:lifecycle-viewmodel-ktx:2.3.1")

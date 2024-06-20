@@ -1,6 +1,9 @@
 package com.example.movies_poa_app.repository
 
-
+import android.graphics.Movie
+import com.example.movies_poa_app.model.MovieResponse
+import com.example.movies_poa_app.retrofit.ApiService
+import io.reactivex.rxjava3.core.Single
 import com.example.movies_poa_app.model.FavoriteRequest
 import com.example.movies_poa_app.model.MovieResponse
 import com.example.movies_poa_app.retrofit.ApiService
@@ -10,11 +13,15 @@ import kotlinx.coroutines.launch
 import retrofit2.Response
 
 
-
 class MovieRepository(private val service: ApiService) {
+
     suspend fun getUpcoming(apiKey: String) = service.getUpcoming(apiKey)
     suspend fun getTopRatedMovies(apiKey: String) = service.getTopRatedMovies(apiKey)
 
+
+    suspend fun getUpcoming(apiKey: String) {
+        return service.getUpcoming(apiKey)
+    }
 
     fun getNowPlaying(apiKey: String) {
         CoroutineScope(Dispatchers.IO).launch {
@@ -50,5 +57,12 @@ class MovieRepository(private val service: ApiService) {
 
 }
 
-
-
+    fun getPopularMovies(apiKey: String, page: Int): Single<MovieResponse> {
+        return service.getPopularMovies(apiKey, page)
+    }
+    suspend fun searchMovies(apiKey: String, query: String): List<Movie> {
+        val response = service.searchMovies(apiKey, query)
+        return response.results
+    
+}
+}

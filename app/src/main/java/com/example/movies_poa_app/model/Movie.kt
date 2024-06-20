@@ -1,6 +1,5 @@
 package com.example.movies_poa_app.model
 
-import com.squareup.moshi.Json
 
 data class Movie(
     val id: Int,
@@ -21,6 +20,11 @@ data class TopRatedMoviesResponse(
     val results: List<Movie>
 )
 
+    @Json(name = "poster_path") val posterPath: String?,
+    @Json(name = "release_date") val releaseDate: String?,
+    val overview: String
+)
+
 
 data class FavoriteRequest(
     val media_type: String,
@@ -28,4 +32,6 @@ data class FavoriteRequest(
     val favorite: Boolean
 )
 
+
+data class MovieResponse (val results: List<Movie>)
 
