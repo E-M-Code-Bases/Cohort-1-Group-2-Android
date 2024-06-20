@@ -10,10 +10,13 @@ data class Movie(
     val posterPath: String,
     val voteAverage: Double
 )
+
 data class FavoriteRequest(
     val mediaType: String,
     val mediaId: Int,
     val favorite: Boolean
 )
 
+
 data class MovieResponse (val results: List<Movie>)
+

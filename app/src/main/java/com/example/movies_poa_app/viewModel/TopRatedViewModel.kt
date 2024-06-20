@@ -1,33 +1,26 @@
 package com.example.movies_poa_app.viewModel
 
-import android.graphics.Movie
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.movies_poa_app.retrofit.TMDBApiService
+import com.example.movies_poa_app.model.TopRatedMoviesResponse
+import com.example.movies_poa_app.model.TopRatedMovies
+import com.example.movies_poa_app.repository.MovieRepository
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 
 
-class TopRatedViewModel(
-    private val TMDBapiService: TMDBApiService) : ViewModel() {
-    private val _movies = MutableLiveData<List<Movie>>()
-    val movies: LiveData<List<Movie>> get() = _movies
+class TopRatedViewModel(private val repository: MovieRepository) : ViewModel() {
+    private val topRatedMovies = mutableListOf<TopRatedMovies>()
 
-    init {
-        fetchTopRatedMovies()
-    }
-
-    private fun fetchTopRatedMovies() {
+    fun fetchTopRatedMovies(apiKey: String) {
         viewModelScope.launch {
-            try {
-                val response = TMDBapiService.getTopRatedMovies("a46d79ac5127fe803aabf6513cafe146")
-                _movies.value = response.results
-            } catch (e: Exception) {
-                // Handle error
-            }
+            val response = withContext(Dispatchers.IO) {
+            repository.getTopRatedMovies("a46d79ac5127fe803aabf6513cafe146")
+           }
+            TopRatedMovies.addAll(response.results)
         }
-    }
-}
 
+   }
+}
 
