@@ -16,8 +16,8 @@ class MovieRepository(private val service: ApiService) {
     }
     suspend fun addFavoriteMovie(accountId: Int, apiKey: String, sessionId: String, movieId: Int): Response<Unit> {
         val favoriteRequest = FavoriteRequest(
-            media_type = "movie",
-            media_id = movieId,
+            mediaType = "movie",
+            mediaId = movieId,
             favorite = true
         )
         return service.addFavoriteMovie(accountId, apiKey, sessionId, favoriteRequest)
