@@ -1,6 +1,5 @@
 package com.example.movies_poa_app.repository
 
-import android.graphics.Movie
 import com.example.movies_poa_app.model.MovieResponse
 import com.example.movies_poa_app.retrofit.ApiService
 import com.example.movies_poa_app.model.FavoriteRequest
@@ -11,15 +10,15 @@ import retrofit2.Response
 
 class MovieRepository(private val service: ApiService) {
 
-    fun getPopularMovies(apiKey: String, page: Int): MovieResponse {
-        return service.getPopularMovies(apiKey, page)
+    fun getPopularMovies(apiKey: String, page: Int) {
+        return service.getPopularMovies(apiKey)
     }
+
 
     suspend fun searchMovies(apiKey: String, query: String): MovieResponse {
         val response = service.searchMovies(apiKey, query)
         return response
     }
-
 
     suspend fun getUpcoming(apiKey: String) = service.getUpcoming(apiKey)
     suspend fun getTopRatedMovies(apiKey: String) = service.getTopRatedMovies(apiKey)
@@ -46,7 +45,7 @@ class MovieRepository(private val service: ApiService) {
         suspend fun getFavoriteMovies(
             accountId: Int,
             apiKey: String,
-            sessionId: String
+            sessionId: String,
         ): Response<MovieResponse> {
             return service.getFavoriteMovies(accountId, apiKey, sessionId)
 
@@ -56,7 +55,7 @@ class MovieRepository(private val service: ApiService) {
             accountId: Int,
             apiKey: String,
             sessionId: String,
-            movieId: Int
+            movieId: Int,
         ): Response<Unit> {
             val favoriteRequest = FavoriteRequest(
                 media_type = "movie",
@@ -69,3 +68,7 @@ class MovieRepository(private val service: ApiService) {
 
     }
 }
+
+
+
+

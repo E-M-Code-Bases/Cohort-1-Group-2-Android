@@ -16,7 +16,6 @@ data class FavoriteRequest(
     val media_id: Int,
     val favorite: Boolean
 )
+data class MovieResponse (val results:List<Movie>)
 
-
-data class MovieResponse (val results: List<Movie>)
 
