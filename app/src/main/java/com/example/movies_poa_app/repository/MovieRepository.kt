@@ -11,11 +11,12 @@ import retrofit2.Response
 
 
 
-class MovieRepository(private val service: ApiService) {
+class MovieRepository(private val service : ApiService) {
+
+
     suspend fun getUpcoming(apiKey: String) = service.getUpcoming(apiKey)
 
-
-    fun getNowPlaying(apiKey: String) {
+    suspend fun getNowPlaying(apiKey: String) {
         CoroutineScope(Dispatchers.IO).launch {
             try {
                 val response = service.getNowPlaying(
@@ -33,20 +34,31 @@ class MovieRepository(private val service: ApiService) {
             }
         }
 
-    suspend fun getFavoriteMovies(accountId: Int, apiKey: String, sessionId: String): Response<MovieResponse> {
-        return service.getFavoriteMovies(accountId, apiKey, sessionId)
+        suspend fun getFavoriteMovies(
+            accountId: Int,
+            apiKey: String,
+            sessionId: String
+        ): Response<MovieResponse> {
+            return service.getFavoriteMovies(accountId, apiKey, sessionId)
+
+        }
+
+        suspend fun addFavoriteMovie(
+            accountId: Int,
+            apiKey: String,
+            sessionId: String,
+            movieId: Int
+        ): Response<Unit> {
+            val favoriteRequest = FavoriteRequest(
+                media_type = "movie",
+                media_id = movieId,
+                favorite = true
+            )
+            return service.addFavoriteMovie(accountId, apiKey, sessionId, favoriteRequest)
+
+        }
 
     }
-    suspend fun addFavoriteMovie(accountId: Int, apiKey: String, sessionId: String, movieId: Int): Response<Unit> {
-        val favoriteRequest = FavoriteRequest(
-            media_type = "movie",
-            media_id = movieId,
-            favorite = true
-        )
-        return service.addFavoriteMovie(accountId, apiKey, sessionId, favoriteRequest)
-
-    }
-
 }
 
 

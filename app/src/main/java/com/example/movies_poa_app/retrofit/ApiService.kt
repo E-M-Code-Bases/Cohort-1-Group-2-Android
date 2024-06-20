@@ -31,7 +31,7 @@ interface ApiService {
 
     @GET("movie/now_playing")
     suspend fun getNowPlaying(
-        @Query("api_key") apiKey: String,
+        @Query("") apiKey: String,
         @Query("language") language: String,
         @Query("page") page: Int
     ): Response<MovieResponse>
