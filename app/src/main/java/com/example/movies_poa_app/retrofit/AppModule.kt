@@ -5,6 +5,8 @@ import com.example.movies_poa_app.viewModel.FavouritesViewModel
 import com.example.movies_poa_app.viewModel.PopularViewModel
 import com.example.movies_poa_app.viewModel.NowPlayingViewModel
 import com.example.movies_poa_app.viewModel.TopRatedViewModel
+import com.example.movies_poa_app.viewModel.TrailerViewModel
+import com.example.movies_poa_app.viewModel.UpcomingViewModel
 
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
@@ -43,4 +45,6 @@ val viewModelModule = module {
     viewModel { PopularViewModel(get()) }
     viewModel { NowPlayingViewModel(get())}
     viewModel { TopRatedViewModel(get())}
+    viewModel { TrailerViewModel(get()) }
+    viewModel { UpcomingViewModel(get()) }
 }
