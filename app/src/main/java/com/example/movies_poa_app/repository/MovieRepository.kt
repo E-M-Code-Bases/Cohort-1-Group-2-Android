@@ -21,6 +21,8 @@ class MovieRepository(private val service: ApiService) {
     }
 
     suspend fun getUpcoming(apiKey: String) = service.getUpcoming(apiKey)
+
+
     suspend fun getTopRatedMovies(apiKey: String) = service.getTopRatedMovies(apiKey)
 
 
