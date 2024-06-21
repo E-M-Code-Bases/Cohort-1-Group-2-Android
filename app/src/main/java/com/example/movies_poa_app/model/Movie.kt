@@ -3,10 +3,12 @@ package com.example.movies_poa_app.model
 
 data class Movie(
     val id: Int,
-    val original_title: String,
+    val title: String,
+    val originalTitle: String,
     val overview: String,
-    val release_date: String,
-    val poster_path: String
+    val releaseDate: String,
+    val posterPath: String,
+    val voteAverage: Double
 )
 
 data class FavoriteRequest(
