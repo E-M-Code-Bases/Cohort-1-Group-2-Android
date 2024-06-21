@@ -11,13 +11,14 @@ import retrofit2.Response
 
 class MovieRepository(private val service: ApiService) {
 
-    fun getPopularMovies(apiKey: String, page: Int) {
+    fun getPopularMovies(apiKey: String):MovieResponse {
         return service.getPopularMovies(apiKey)
     }
 
-
     suspend fun searchMovies(apiKey: String, query: String): MovieResponse {
         return service.searchMovies(apiKey, query)
+    }
+
 
     }
 

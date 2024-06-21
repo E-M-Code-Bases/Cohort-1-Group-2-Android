@@ -1,12 +1,5 @@
 
 <layout xmlns:android="http://schemas.android.com/apk/res/android">
-
-    <data>
-        <variable
-            name="movie"
-            type="com.example.movies_poa_app.model.PopularMovie" />
-    </data>
-
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -19,16 +12,16 @@
             android:orientation="vertical">
 
             <TextView
-                android:id="@+id/textViewTitle"
+                android:id="@+id/movieTitle"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="@{movie.title}" />
+                android:text="title" />
 
             <TextView
-                android:id="@+id/textViewOverview"
+                android:id="@+id/description"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"/>
-<!--                android:text="@{movie.overview}" />-->
+                android:layout_height="wrap_content"
+                android:text="description"/>
 
         </LinearLayout>
 

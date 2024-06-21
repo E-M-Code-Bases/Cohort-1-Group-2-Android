@@ -35,10 +35,11 @@ class TopRatedFragment : Fragment() {
         val adapter = TopRatedAdapter()
         recyclerView.adapter = adapter
 
-        viewModel.Movie.observe(viewLifecycleOwner) { movieList ->
-            movieList?.let {
-                adapter.submitList(it)
-            }
-        }
+//        viewModel.movie.observe(viewLifecycleOwner) { movieList ->
+//            movieList?.let {
+//                adapter.submitList(it)
+//            }
+//        }
+
     }
 }
