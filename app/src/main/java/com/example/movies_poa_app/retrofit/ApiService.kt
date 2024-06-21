@@ -14,7 +14,10 @@ interface ApiService {
 
     @GET("movie/popular")
     fun getPopularMovies(
-        @Query("c86b2436b1121f1894caf99d7c17452d") apiKey: String)
+        @Query("c86b2436b1121f1894caf99d7c17452d") apiKey: String,
+    ):MovieResponse
+
+
     @GET("movie/upcoming")
     suspend fun getUpcoming(
         @Query("c86b2436b1121f1894caf99d7c17452d") apiKey: String)
@@ -29,8 +32,6 @@ interface ApiService {
      "a46d79ac5127fe803aabf6513cafe146"
         ) apiKey: String
     ): MovieResponse
-
-
 
 
     @GET("account/{account_id}/favorite/movies")

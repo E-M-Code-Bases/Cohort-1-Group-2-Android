@@ -27,6 +27,11 @@ class PopularFragment : Fragment() {
         binding = FragmentPopularBinding.inflate(inflater, container, false)
         binding.viewModel = viewModel
         binding.lifecycleOwner = this
+        adapter = MoviesAdapter()
+
+        viewModel.popularMovies.observe(viewLifecycleOwner, Observer { movies ->
+            adapter.moviesList.submitList(movies)
+        })
 
         setupRecyclerView()
         setupSearch()
@@ -35,13 +40,8 @@ class PopularFragment : Fragment() {
     }
 
     private fun setupRecyclerView() {
-        adapter = MoviesAdapter()
         binding.recyclerViewTopRated.layoutManager = LinearLayoutManager(context)
         binding.recyclerViewTopRated.adapter = adapter
-
-        viewModel.popularMovies.observe(viewLifecycleOwner, Observer { movies ->
-            adapter.submitList(movies)
-        })
     }
 
     private fun setupSearch() {
