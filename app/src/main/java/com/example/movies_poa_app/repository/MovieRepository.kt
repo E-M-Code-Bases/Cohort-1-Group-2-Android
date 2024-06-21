@@ -53,8 +53,8 @@ class MovieRepository(private val service: ApiService) {
 
     }
 
-    suspend fun getTrailer(apiKey: String, movieId: Int): TrailerResponse {
-        return service.getTrailer(apiKey, movieId)
+    suspend fun getTrailer(apiKey: Int, movieId: String): Response<TrailerResponse> {
+        return  service.getTrailers(apiKey,movieId)
     }
 }
 
