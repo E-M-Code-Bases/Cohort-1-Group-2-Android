@@ -1,4 +1,5 @@
 package com.example.movies_poa_app.retrofit
+
 import com.example.movies_poa_app.repository.MovieRepository
 import com.example.movies_poa_app.viewModel.FavouritesViewModel
 import com.example.movies_poa_app.viewModel.PopularViewModel
@@ -39,7 +40,6 @@ val repositoryModule = module {
 val viewModelModule = module {
     viewModel { FavouritesViewModel(get()) }
     viewModel { PopularViewModel(get()) }
-    viewModel {NowPlayingViewModel(get())}
     viewModel { NowPlayingViewModel(get())}
     viewModel { TopRatedViewModel(get())}
 }

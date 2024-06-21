@@ -44,7 +44,7 @@ class PopularViewModel(private val repository: MovieRepository) : ViewModel() {
                 }
             }
         } else {
-            fetchPopularMovies("your_api_key", 1)
+            fetchPopularMovies("a46d79ac5127fe803aabf6513cafe146", 1)
         }
     }
 }
