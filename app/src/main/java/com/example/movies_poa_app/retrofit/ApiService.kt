@@ -27,12 +27,7 @@ interface ApiService {
 
 
     @GET("movie/top_rated")
-    suspend fun getTopRatedMovies(
-
-        @Query(
-     "a46d79ac5127fe803aabf6513cafe146"
-        ) apiKey: String
-    ): MovieResponse
+    suspend fun getTopRatedMovies(@Query("a46d79ac5127fe803aabf6513cafe146") apiKey: String): MovieResponse
 
 
     @GET("account/{account_id}/favorite/movies")
