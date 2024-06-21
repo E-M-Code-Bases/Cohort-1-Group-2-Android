@@ -9,23 +9,39 @@ import com.example.movies_poa_app.R
 import com.example.movies_poa_app.databinding.NowplayingItemsBinding
 import com.example.movies_poa_app.model.Movie
 import com.squareup.picasso.Picasso
-/*
-class NowPlayingAdapter (private var con: Context, var list: List<Movie>): RecyclerView.Adapter<NowPlayingAdapter.ViewHolder> () {
-      inner class ViewHolder(binding: NowplayingItemsBinding): RecyclerView.ViewHolder(binding.root)
+
+class NowPlayingAdapter (private var context: Context, var list: List<Movie>): RecyclerView.Adapter<NowPlayingAdapter.ViewHolder> () {
+    inner class ViewHolder( val binding: NowplayingItemsBinding) : RecyclerView.ViewHolder(binding.root)
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
-        val inflater= LayoutInflater.from(con)
-        val binding= DataBindingUtil.inflate<NowplayingItemsBinding>(inflater, R.layout.nowplaying_items,false)
-        return binding.root
+        val inflater = LayoutInflater.from(context)
+        val binding: NowplayingItemsBinding = DataBindingUtil.inflate(inflater, R.layout.nowplaying_items, parent, false)
+        return ViewHolder(binding)
     }
 
     override fun getItemCount(): Int {
-        return list.count()
+        return list.size
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        TODO("Not yet implemented")
+        val movie = list[position]
+        holder.binding.movie = movie
+
+        val posterUrl = "https://image.tmdb.org/t/p/w500${movie.posterPath}"
+
+        Picasso.get()
+            .load(posterUrl)
+            .placeholder(R.drawable.ic_launcher_background)
+            .into(holder.binding.posterImageView)
+
+        holder.binding.executePendingBindings()
+    }
+
+    fun updateList(newList: List<Movie>) {
+        list = newList
+        notifyDataSetChanged()
+    }
 
 
     }
-}*/
+

@@ -24,25 +24,12 @@ class MovieRepository(private val service: ApiService) {
     suspend fun getUpcoming(apiKey: String) = service.getUpcoming(apiKey)
     suspend fun getTopRatedMovies(apiKey: String) = service.getTopRatedMovies(apiKey)
 
-
-    fun getNowPlaying(apiKey: String) {
-        CoroutineScope(Dispatchers.IO).launch {
-            try {
-                val response = service.getNowPlaying(
-                    apiKey,
-                    "en-US",
-                    1
-                )
-                if (response.isSuccessful) {
-
-                } else {
-
-                }
-            } catch (e: Exception) {
-
-            }
+    suspend fun getNowPlaying(apiKey: String, language:String,page: Int): Response<MovieResponse> {
+        return service.getNowPlaying(apiKey, language,page)
         }
-    }
+
+        suspend fun getFavouriteMovies(accountId: Int, apiKey: String, sessionId: String, ): Response<MovieResponse> {
+            return service.getFavoriteMovies(accountId, apiKey, sessionId)
 
     suspend fun getFavouriteMovies(
         accountId: Int,

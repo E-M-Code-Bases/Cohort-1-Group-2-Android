@@ -31,8 +31,6 @@ interface ApiService {
     ): MovieResponse
 
 
-
-
     @GET("account/{account_id}/favorite/movies")
     suspend fun getFavoriteMovies(@Path("account_id") accountId: Int, @Query("api_key") apiKey: String, @Query("session_id") sessionId: String): Response<MovieResponse>
 
