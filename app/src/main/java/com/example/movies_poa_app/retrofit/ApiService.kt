@@ -21,42 +21,28 @@ interface ApiService {
     )
 
     @GET("search/movie")
-    suspend fun searchMovies(
-        @Query("c86b2436b1121f1894caf99d7c17452d") apiKey: String,
-        @Query("query") query: String
-    ): MovieResponse
+    suspend fun searchMovies(@Query("c86b2436b1121f1894caf99d7c17452d") apiKey: String, @Query("query") query: String): MovieResponse
 
 
     @GET("movie/top_rated")
     suspend fun getTopRatedMovies(
         @Query(
-            "a46d79ac5127fe803aabf6513cafe146"
+     "a46d79ac5127fe803aabf6513cafe146"
         ) apiKey: String
     ): MovieResponse
 
 
 
+
     @GET("account/{account_id}/favorite/movies")
-    suspend fun getFavoriteMovies(
-        @Path("account_id") accountId: Int,
-        @Query("api_key") apiKey: String,
-        @Query("session_id") sessionId: String
-    ): Response<MovieResponse>
+    suspend fun getFavoriteMovies(@Path("account_id") accountId: Int, @Query("api_key") apiKey: String, @Query("session_id") sessionId: String): Response<MovieResponse>
 
     @POST("account/{account_id}/favorite")
-    suspend fun addFavoriteMovie(
-        @Path("account_id") accountId: Int,
-        @Query("api_key") apiKey: String,
-        @Query("session_id") sessionId: String,
-        @Body favoriteRequest: FavoriteRequest
-    ): Response<Unit>
+    suspend fun addFavoriteMovie(@Path("account_id") accountId: Int, @Query("api_key") apiKey: String, @Query("session_id") sessionId: String, @Body favoriteRequest: FavoriteRequest): Response<Unit>
+
 
     @GET("movie/now_playing")
-    suspend fun getNowPlaying(
-        @Query("api_key") apiKey: String,
-        @Query("language") language: String,
-        @Query("page") page: Int
-    ): Response<MovieResponse>
+    suspend fun getNowPlaying(@Query("api_key") apiKey: String,@Query("language") language: String, @Query("page") page: Int): Response<MovieResponse>
 
 }
 
