@@ -1,7 +1,11 @@
 package com.example.movies_poa_app.retrofit
+
 import com.example.movies_poa_app.repository.MovieRepository
 import com.example.movies_poa_app.viewModel.FavouritesViewModel
+import com.example.movies_poa_app.viewModel.PopularViewModel
 import com.example.movies_poa_app.viewModel.NowPlayingViewModel
+import com.example.movies_poa_app.viewModel.TopRatedViewModel
+
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import org.koin.androidx.viewmodel.dsl.viewModel
@@ -35,5 +39,7 @@ val repositoryModule = module {
 
 val viewModelModule = module {
     viewModel { FavouritesViewModel(get()) }
-    viewModel {NowPlayingViewModel(get())}
+    viewModel { PopularViewModel(get()) }
+    viewModel { NowPlayingViewModel(get())}
+    viewModel { TopRatedViewModel(get())}
 }

@@ -1,16 +1,17 @@
 package com.example.movies_poa_app.adapters
 
-import com.example.movies_poa_app.model.Movie
+import com.example.movies_poa_app.databinding.ItemTopmovieBinding
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
+import com.example.movies_poa_app.model.Movie
 
 class TopRatedAdapter : ListAdapter<Movie, TopRatedAdapter.MovieViewHolder>(DiffCallback()) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MovieViewHolder {
-        val binding = ItemMovieBinding.inflate(LayoutInflater.from(parent.context), parent, false)
+        val binding = ItemTopmovieBinding.inflate(LayoutInflater.from(parent.context), parent, false)
         return MovieViewHolder(binding)
     }
 
@@ -19,7 +20,7 @@ class TopRatedAdapter : ListAdapter<Movie, TopRatedAdapter.MovieViewHolder>(Diff
         holder.bind(movie)
     }
 
-    class MovieViewHolder(private val binding: ItemMovieBinding) : RecyclerView.ViewHolder(binding.root) {
+    class MovieViewHolder(private val binding: ItemTopmovieBinding) : RecyclerView.ViewHolder(binding.root) {
         fun bind(movie: Movie) {
             binding.movie = movie
             binding.executePendingBindings()
