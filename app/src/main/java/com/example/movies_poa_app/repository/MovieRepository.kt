@@ -4,9 +4,6 @@ import com.example.movies_poa_app.model.MovieResponse
 import com.example.movies_poa_app.retrofit.ApiService
 import com.example.movies_poa_app.model.FavoriteRequest
 import com.example.movies_poa_app.model.TrailerResponse
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.launch
 import retrofit2.Response
 
 class MovieRepository(private val service: ApiService) {

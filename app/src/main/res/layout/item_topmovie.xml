@@ -4,7 +4,7 @@
     <data>
         <variable
             name="movie"
-            type="com.example.movies_poa_app.model.TopRatedMovies" />
+            type="com.example.movies_poa_app.model.Movie" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
