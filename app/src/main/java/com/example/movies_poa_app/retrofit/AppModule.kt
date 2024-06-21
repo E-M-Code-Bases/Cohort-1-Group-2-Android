@@ -25,7 +25,8 @@ val okHttpClient: OkHttpClient = OkHttpClient.Builder()
     .addInterceptor(loggingInterceptor)
     .build()
 
-val networkModule = module {    single {
+val networkModule = module {
+    single {
         Retrofit.Builder()
             .baseUrl(baseUrl)
             .client(okHttpClient)
