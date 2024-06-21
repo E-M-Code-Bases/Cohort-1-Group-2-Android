@@ -2,6 +2,7 @@ package com.example.movies_poa_app.retrofit
 
 import com.example.movies_poa_app.model.MovieResponse
 import com.example.movies_poa_app.model.FavoriteRequest
+import com.example.movies_poa_app.model.TrailerResponse
 import retrofit2.Response
 import retrofit2.http.Body
 import retrofit2.http.GET
@@ -16,44 +17,35 @@ interface ApiService {
         @Query("c86b2436b1121f1894caf99d7c17452d") apiKey: String,
     ):MovieResponse
 
+
     @GET("movie/upcoming")
     suspend fun getUpcoming(
-        @Query("c86b2436b1121f1894caf99d7c17452d") apiKey: String
-    )
+        @Query("c86b2436b1121f1894caf99d7c17452d") apiKey: String)
 
     @GET("search/movie")
-    suspend fun searchMovies(
-        @Query("c86b2436b1121f1894caf99d7c17452d") apiKey: String,
-        @Query("query") query: String
-    ): MovieResponse
+    suspend fun searchMovies(@Query("c86b2436b1121f1894caf99d7c17452d") apiKey: String, @Query("query") query: String): MovieResponse
 
 
     @GET("movie/top_rated")
     suspend fun getTopRatedMovies(
-        @Query("a46d79ac5127fe803aabf6513cafe146") apiKey: String)
-
+        @Query(
+     "a46d79ac5127fe803aabf6513cafe146"
+        ) apiKey: String
+    ): MovieResponse
 
 
     @GET("account/{account_id}/favorite/movies")
-    suspend fun getFavoriteMovies(
-        @Path("account_id") accountId: Int,
-        @Query("api_key") apiKey: String,
-        @Query("session_id") sessionId: String): Response<MovieResponse>
+    suspend fun getFavoriteMovies(@Path("account_id") accountId: Int, @Query("api_key") apiKey: String, @Query("session_id") sessionId: String): Response<MovieResponse>
 
     @POST("account/{account_id}/favorite")
-    suspend fun addFavoriteMovie(
-        @Path("account_id") accountId: Int,
-        @Query("api_key") apiKey: String,
-        @Query("session_id") sessionId: String,
-        @Body favoriteRequest: FavoriteRequest): Response<Unit>
+    suspend fun addFavoriteMovie(@Path("account_id") accountId: Int, @Query("api_key") apiKey: String, @Query("session_id") sessionId: String, @Body favoriteRequest: FavoriteRequest): Response<Unit>
+
 
     @GET("movie/now_playing")
-    suspend fun getNowPlaying(
-        @Query("api_key") apiKey: String,
-        @Query("language") language: String,
-        @Query("page") page: Int
-    ): Response<MovieResponse>
+    suspend fun getNowPlaying(@Query("api_key") apiKey: String,@Query("language") language: String, @Query("page") page: Int): Response<MovieResponse>
 
+    @GET("/movie/{movie_id}/videos")
+    suspend fun  getTrailer(@Query("api_key") apiKey: String,@Path("movie_id")movie_id:Int):TrailerResponse
 }
 
 

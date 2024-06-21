@@ -40,5 +40,6 @@ class TopRatedFragment : Fragment() {
 //                adapter.submitList(it)
 //            }
 //        }
+
     }
 }
