@@ -19,9 +19,6 @@ class MovieRepository(private val service: ApiService) {
         return service.searchMovies(apiKey, query)
     }
 
-
-    }
-
     suspend fun getUpcoming(apiKey: String) = service.getUpcoming(apiKey)
     suspend fun getTopRatedMovies(apiKey: String) = service.getTopRatedMovies(apiKey)
 
@@ -31,15 +28,7 @@ class MovieRepository(private val service: ApiService) {
 
         suspend fun getFavouriteMovies(accountId: Int, apiKey: String, sessionId: String, ): Response<MovieResponse> {
             return service.getFavoriteMovies(accountId, apiKey, sessionId)
-
-    suspend fun getFavouriteMovies(
-        accountId: Int,
-        apiKey: String,
-        sessionId: String,
-    ): Response<MovieResponse> {
-        return service.getFavoriteMovies(accountId, apiKey, sessionId)
-
-    }
+        }
 
     suspend fun addFavoriteMovie(
         accountId: Int,
