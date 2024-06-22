@@ -41,6 +41,5 @@ class NowPlayingAdapter (private var context: Context, private var list: List<Mo
         list = newList
     }
 
-
     }
 
