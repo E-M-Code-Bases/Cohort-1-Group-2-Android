@@ -3,6 +3,7 @@ package com.example.movies_poa_app.repository
 import com.example.movies_poa_app.model.MovieResponse
 import com.example.movies_poa_app.retrofit.ApiService
 import com.example.movies_poa_app.model.FavoriteRequest
+import com.example.movies_poa_app.model.MovieDetails
 import com.example.movies_poa_app.model.TrailerResponse
 import retrofit2.Response
 
@@ -43,6 +44,10 @@ class MovieRepository(private val service: ApiService) {
 
     suspend fun getTrailer(apiKey: Int, movieId: String): Response<TrailerResponse> {
         return  service.getTrailers(apiKey,movieId)
+    }
+
+    suspend fun  showDetails(apiKey: String,movieId: Int):Response<MovieDetails>{
+        return  service.showDetail(movieId,apiKey)
     }
 }
 
