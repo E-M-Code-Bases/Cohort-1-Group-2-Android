@@ -6,6 +6,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.movies_poa_app.model.Trailer
 import com.example.movies_poa_app.repository.MovieRepository
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
 class TrailerViewModel(private  val  repository :MovieRepository) : ViewModel(){
@@ -16,7 +17,7 @@ class TrailerViewModel(private  val  repository :MovieRepository) : ViewModel(){
     val  error :LiveData<String> get() = _error
 
     fun fetchMovieTrailers(movieId: Int, apiKey: String) {
-        viewModelScope.launch {
+        viewModelScope.launch(Dispatchers.IO) {
             try {
                 val response = repository.getTrailer(movieId,apiKey)
                 if (response.isSuccessful) {
