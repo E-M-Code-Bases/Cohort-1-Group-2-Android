@@ -9,7 +9,7 @@ import retrofit2.Response
 
 class MovieRepository(private val service: ApiService) {
 
-    fun getPopularMovies(apiKey: String):MovieResponse {
+    fun getPopularMovies(apiKey: String): MovieResponse {
         return service.getPopularMovies(apiKey)
     }
 
@@ -24,13 +24,25 @@ class MovieRepository(private val service: ApiService) {
         return service.getTopRatedMovies(apiKey)
     }
 
-    suspend fun getNowPlaying(apiKey: String, language:String,page: Int): Response<MovieResponse> {
-        return service.getNowPlaying(apiKey, language,page)
-        }
+    suspend fun getNowPlaying(
+        apiKey: String,
+        language: String,
+        page: Int
+    ): Response<MovieResponse> {
+        return service.getNowPlaying(apiKey, language, page)
+    }
 
-        suspend fun getFavouriteMovies(accountId: Int, apiKey: String, sessionId: String, ): Response<MovieResponse> {
-            return service.getFavoriteMovies(accountId, apiKey, sessionId)
-        }
+    suspend fun getFavouriteMovies(
+        accountId: Int,
+        apiKey: String,
+        sessionId: String,
+    ): Response<MovieResponse> {
+        return service.getFavoriteMovies(accountId, apiKey, sessionId)
+
+
+    }
+
+
 
     suspend fun addFavoriteMovie(
         accountId: Int,
@@ -45,13 +57,15 @@ class MovieRepository(private val service: ApiService) {
     }
 
     suspend fun getTrailer(apiKey: Int, movieId: String): Response<TrailerResponse> {
-        return  service.getTrailers(apiKey,movieId)
+        return service.getTrailers(apiKey, movieId)
     }
 
     suspend fun  showDetails(apiKey: String,movieId: Int):Response<MovieDetails>{
         return  service.showDetail(movieId,apiKey)
     }
 }
+
+
 
 
 

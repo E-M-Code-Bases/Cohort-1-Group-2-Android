@@ -16,6 +16,7 @@ class TopRatedViewModel(private val movieRepository: MovieRepository) : ViewMode
 
     private val _moviesError = MutableLiveData<String>()
 
+
     fun fetchTopRatedMovies(apiKey: String) {
         viewModelScope.launch(Dispatchers.IO) {
             try {
@@ -28,6 +29,7 @@ class TopRatedViewModel(private val movieRepository: MovieRepository) : ViewMode
             } catch (e: Exception) {
                 _moviesError.postValue(e.message ?: "Unknown error occurred")
             }
+
         }
     }
 }
