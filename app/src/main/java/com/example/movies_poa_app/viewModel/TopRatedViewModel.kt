@@ -21,8 +21,8 @@ class TopRatedViewModel(private val repository: MovieRepository) : ViewModel() {
 
     private fun fetchTopRatedMovies() {
         viewModelScope.launch (Dispatchers.IO){
-            val response = repository.getTopRatedMovies("a46d79ac5127fe803aabf6513cafe146")
-           _movies.postValue(response.)
+            val movies = repository.getTopRatedMovies("a46d79ac5127fe803aabf6513cafe146")
+           _movies.postValue((movies) as List<Movie>?)
         }
 
    }

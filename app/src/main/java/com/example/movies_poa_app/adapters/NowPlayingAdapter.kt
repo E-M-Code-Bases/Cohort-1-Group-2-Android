@@ -3,6 +3,7 @@ package com.example.movies_poa_app.adapters
 import android.content.Context
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.databinding.BindingAdapter
 import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.example.movies_poa_app.R
@@ -10,7 +11,7 @@ import com.example.movies_poa_app.databinding.NowplayingItemsBinding
 import com.example.movies_poa_app.model.Movie
 import com.squareup.picasso.Picasso
 
-class NowPlayingAdapter (private var context: Context, var list: List<Movie>): RecyclerView.Adapter<NowPlayingAdapter.ViewHolder> () {
+class NowPlayingAdapter (private var context: Context,private var list: List<Movie>): RecyclerView.Adapter<NowPlayingAdapter.ViewHolder> () {
     inner class ViewHolder( val binding: NowplayingItemsBinding) : RecyclerView.ViewHolder(binding.root)
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
@@ -39,9 +40,8 @@ class NowPlayingAdapter (private var context: Context, var list: List<Movie>): R
 
     fun updateList(newList: List<Movie>) {
         list = newList
-        notifyDataSetChanged()
-    }
 
+    }
 
     }
 
