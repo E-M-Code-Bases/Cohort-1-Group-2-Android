@@ -7,7 +7,9 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 
-class TopRatedAdapter : ListAdapter<Movie, TopRatedAdapter.MovieViewHolder>(DiffCallback()) {
+class
+
+TopRatedAdapter : ListAdapter<Movie, TopRatedAdapter.MovieViewHolder>(DiffCallback()) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MovieViewHolder {
         val binding = ItemMovieBinding.inflate(LayoutInflater.from(parent.context), parent, false)
