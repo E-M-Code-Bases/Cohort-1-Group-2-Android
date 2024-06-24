@@ -31,7 +31,6 @@ class FavouritesAdapter(
         return movies.size
     }
 
-    fun updateMovies(newMovies: List<Movie>) {
         movies = newMovies
     }
 }
