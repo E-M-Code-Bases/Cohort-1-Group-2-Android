@@ -1,35 +1,45 @@
 package com.example.movies_poa_app.adapters
 
-import com.example.movies_poa_app.model.Movie
+import android.content.Context
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import androidx.recyclerview.widget.DiffUtil
-import androidx.recyclerview.widget.ListAdapter
+import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.RecyclerView
+import com.example.movies_poa_app.R
+import com.example.movies_poa_app.databinding.ItemTopmovieBinding
+import com.example.movies_poa_app.model.Movie
+import com.squareup.picasso.Picasso
 
-class
+class TopRatedAdapter (private var context: Context, private var list: List<Movie>): RecyclerView.Adapter<TopRatedAdapter.ViewHolder> () {
+    inner class ViewHolder( val binding: ItemTopmovieBinding) : RecyclerView.ViewHolder(binding.root)
 
-TopRatedAdapter : ListAdapter<Movie, TopRatedAdapter.MovieViewHolder>(DiffCallback()) {
-
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MovieViewHolder {
-        val binding = ItemMovieBinding.inflate(LayoutInflater.from(parent.context), parent, false)
-        return MovieViewHolder(binding)
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
+        val inflater = LayoutInflater.from(context)
+        val binding: ItemTopmovieBinding = DataBindingUtil.inflate(inflater, R.layout.item_topmovie, parent, false)
+        return ViewHolder(binding)
     }
 
-    override fun onBindViewHolder(holder: MovieViewHolder, position: Int) {
-        val movie = getItem(position)
-        holder.bind(movie)
+    override fun getItemCount(): Int {
+        return list.size
     }
 
-    class MovieViewHolder(private val binding: ItemMovieBinding) : RecyclerView.ViewHolder(binding.root) {
-        fun bind(movie: Movie) {
-            binding.movie = movie
-            binding.executePendingBindings()
-        }
+    override fun onBindViewHolder(holder: ViewHolder, position: Int) {
+        val movie = list[position]
+        holder.binding.movie = movie
+
+        val posterUrl = "https://image.tmdb.org/t/p/w500${movie.posterPath}"
+
+        Picasso.get()
+            .load(posterUrl)
+            .placeholder(R.drawable.ic_launcher_background)
+            .into(holder.binding.moviePoster)
+
+        holder.binding.executePendingBindings()
     }
 
-    class DiffCallback : DiffUtil.ItemCallback<Movie>() {
-        override fun areItemsTheSame(oldItem: Movie, newItem: Movie): Boolean = oldItem.id == newItem.id
-        override fun areContentsTheSame(oldItem: Movie, newItem: Movie): Boolean = oldItem == newItem
+    fun updateList(newList: List<Movie>) {
+        list = newList
     }
+
 }
+

@@ -1,61 +1,38 @@
-<layout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools">
-
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
     <data>
         <variable
             name="movie"
-            type="com.example.movies_poa_app.viewModel.NowPlayingViewModel" />
+            type="com.example.movies_poa_app.model.Movie" />
     </data>
-
-    <androidx.constraintlayout.widget.ConstraintLayout
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:padding="16dp"
-        android:id="@+id/nowplaying_items">
+        android:orientation="vertical"
+        android:padding="8dp">
 
         <ImageView
-            android:id="@+id/movie_poster"
-            android:layout_width="100dp"
+            android:id="@+id/posterImageView"
+            android:layout_width="101dp"
             android:layout_height="150dp"
-            android:scaleType="centerCrop"
-            app:imageUrl="@{movie.posterPath}"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            android:src="@drawable/flowers_background" />
+            android:layout_gravity="center"
+            android:scaleType="centerCrop" />
 
         <TextView
-            android:id="@+id/movie_title"
-            android:layout_width="0dp"
+            android:id="@+id/titleTextView"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textSize="18sp"
+            android:text="@{movie.title}"
+            android:textSize="16sp"
             android:textStyle="bold"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintStart_toEndOf="@id/movie_poster"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintMarginStart="8dp"
-             />
+            android:layout_marginTop="8dp"/>
 
         <TextView
-            android:id="@+id/movie_rating"
-            android:layout_width="0dp"
+            android:id="@+id/overviewTextView"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:text="@{movie.overview}"
             android:textSize="14sp"
-            app:layout_constraintTop_toBottomOf="@id/movie_title"
-            app:layout_constraintStart_toEndOf="@id/movie_poster"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintMarginStart="8dp"
-            android:text="@{String.valueOf(movie.voteAverage)}" />
+            android:layout_marginTop="4dp"/>
 
-        <TextView
-            android:id="@+id/movie_overview"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:textSize="14sp"
-            app:layout_constraintTop_toBottomOf="@id/movie_rating"
-            app:layout_constraintStart_toEndOf="@id/movie_poster"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintMarginStart="8dp"
-            android:text="@{movie.overview}" />
-    </androidx.constraintlayout.widget.ConstraintLayout>
+    </LinearLayout>
 </layout>
