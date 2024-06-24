@@ -27,14 +27,12 @@ class FavouritesAdapter(
         holder.binding.executePendingBindings()
     }
 
-    override fun getItemCount(): Int {
-        return movies.size
-    }
+    override fun getItemCount(): Int = movies.size
 
+    fun updateMovies(newMovies: List<Movie>) {
         movies = newMovies
     }
 }
-
 interface MovieClickListener {
     fun onMovieClick(movie: Movie)
 }
