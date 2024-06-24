@@ -6,6 +6,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
 import com.example.movies_poa_app.model.Movie
 import com.example.movies_poa_app.repository.MovieRepository
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
 class FavouritesViewModel(private val repository: MovieRepository) : ViewModel() {
@@ -17,7 +18,7 @@ class FavouritesViewModel(private val repository: MovieRepository) : ViewModel()
     val addFavoriteStatus: LiveData<Boolean> get() = _addFavoriteStatus
 
     fun getFavoriteMovies(accountId: Int, apiKey: String, sessionId: String) {
-        viewModelScope.launch {
+        viewModelScope.launch(Dispatchers.IO) {
             val response = repository.getFavouriteMovies(accountId, apiKey, sessionId)
             if (response.isSuccessful) {
                 _movies.postValue(response.body()?.results)
@@ -28,7 +29,7 @@ class FavouritesViewModel(private val repository: MovieRepository) : ViewModel()
     }
 
     fun addFavoriteMovie(accountId: Int, apiKey: String, sessionId: String, movieId: Int) {
-        viewModelScope.launch {
+        viewModelScope.launch(Dispatchers.IO) {
             val response = repository.addFavoriteMovie(accountId, apiKey, sessionId, movieId)
             _addFavoriteStatus.postValue(response.isSuccessful)
         }

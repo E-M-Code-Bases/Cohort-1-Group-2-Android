@@ -11,7 +11,9 @@ import com.example.movies_poa_app.databinding.NowplayingItemsBinding
 import com.example.movies_poa_app.model.Movie
 import com.squareup.picasso.Picasso
 
-class NowPlayingAdapter (private var context: Context,private var list: List<Movie>): RecyclerView.Adapter<NowPlayingAdapter.ViewHolder> () {
+
+class NowPlayingAdapter (private var context: Context, private var list: List<Movie>): RecyclerView.Adapter<NowPlayingAdapter.ViewHolder> () {
+
     inner class ViewHolder( val binding: NowplayingItemsBinding) : RecyclerView.ViewHolder(binding.root)
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
