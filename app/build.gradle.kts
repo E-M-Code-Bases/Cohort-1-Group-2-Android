@@ -59,36 +59,28 @@ dependencies {
     androidTestImplementation(libs.androidx.espresso.core)
 
 
-    implementation (libs.kotlin.stdlib)
-    implementation (libs.androidx.core.ktx.v160)
-    implementation (libs.androidx.appcompat.v131)
-    implementation (libs.material.v140)
-    implementation (libs.androidx.constraintlayout.v210)
+    implementation("org.jetbrains.kotlin:kotlin-stdlib:1.5.21")
 
-    implementation (libs.androidx.lifecycle.extensions)
-    implementation (libs.androidx.lifecycle.viewmodel.ktx.v231)
-    implementation (libs.androidx.lifecycle.livedata.ktx.v231)
+    implementation("androidx.lifecycle:lifecycle-viewmodel-ktx:2.3.1")
+    implementation("androidx.lifecycle:lifecycle-livedata-ktx:2.3.1")
+    implementation("io.insert-koin:koin-core:3.3.2")
+    implementation("io.insert-koin:koin-android:3.3.2")
+    implementation("io.insert-koin:koin-androidx-viewmodel:3.3.2")
+    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.5.1")
+    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-android:1.5.1")
+    implementation("org.koin:koin-android:3.1.2")
+    implementation("org.koin:koin-androidx-viewmodel:3.1.2")
+    implementation("com.squareup.picasso:picasso:2.71828")
+    implementation("com.squareup.retrofit2:retrofit:2.9.0")
+    implementation("com.squareup.retrofit2:converter-moshi:2.11.0")
+    implementation("com.squareup.okhttp3:logging-interceptor:4.9.1")
+    implementation("com.google.android.material:material:1.4.0")
+    implementation("androidx.viewpager2:viewpager2:1.0.0")
+    implementation("androidx.fragment:fragment-ktx:1.3.6")
+//    implementation ("org.jetbrains.kotlin:kotlin-stdlib:1.5.21")
 
-    implementation (libs.androidx.navigation.fragment.ktx)
-    implementation (libs.androidx.navigation.ui.ktx)
-
-    implementation (libs.kotlinx.coroutines.core)
-    implementation (libs.kotlinx.coroutines.android)
-
-    implementation(libs.koin.android)
-    implementation(libs.insert.koin.koin.androidx.viewmodel)
-    implementation (libs.koin.core)
-    implementation(libs.koin.androidx)
-
-
-    implementation (libs.retrofit)
-    implementation (libs.converter.moshi)
-    implementation (libs.logging.interceptor)
-
-    implementation (libs.material)
-    implementation (libs.androidx.viewpager2)
-    implementation (libs.androidx.fragment.ktx.v136)
-
-    implementation(libs.picasso)
-
+//    implementation ("androidx.core:core-ktx:1.6.0")
+//    implementation ("androidx.appcompat:appcompat:1.3.1")
+//    implementation ("com.google.android.material:material:1.4.0")
+//    implementation ("androidx.constraintlayout:constraintlayout:2.1.0")
 }
