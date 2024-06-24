@@ -26,7 +26,7 @@ class MovieRepository(private val service: ApiService) {
         return service.getNowPlaying(apiKey, language,page)
         }
 
-        suspend fun getFavouriteMovies(accountId: Int, apiKey: String, sessionId: String, ): Response<MovieResponse> {
+        suspend fun getFavouriteMovies(accountId: Int, apiKey: String, sessionId: String): Response<MovieResponse> {
             return service.getFavoriteMovies(accountId, apiKey, sessionId)
         }
 
