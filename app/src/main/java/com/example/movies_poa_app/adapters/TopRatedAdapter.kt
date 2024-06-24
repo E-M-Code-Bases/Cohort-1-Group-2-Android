@@ -1,3 +1,4 @@
+
 package com.example.movies_poa_app.adapters
 
 import android.content.Context

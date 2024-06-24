@@ -19,6 +19,8 @@ class TopRatedFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View {
         binding = FragmentTopRatedBinding.inflate(inflater, container, false)
+        viewModel.fetchTopRatedMovies(apiKey = "...")
+
 
         return binding.root
     }
@@ -33,6 +35,6 @@ class TopRatedFragment : Fragment() {
         viewModel.movies.observe(viewLifecycleOwner) { movies ->
             adapter.updateList(movies)
         }
-
     }
+
 }
