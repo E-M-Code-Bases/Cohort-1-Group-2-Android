@@ -33,7 +33,6 @@ class FavouritesAdapter(
         movies = newMovies
     }
 }
-
 interface MovieClickListener {
     fun onMovieClick(movie: Movie)
 }
