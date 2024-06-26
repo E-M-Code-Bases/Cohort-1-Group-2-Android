@@ -1,6 +1,6 @@
 package com.example.movies_poa_app.view.activity
 
-import android.content.res.Resources.NotFoundException
+import android.content.res.Resources
 import android.os.Bundle
 import android.widget.ImageView
 import android.widget.Toast
@@ -38,14 +38,14 @@ class MainActivity : AppCompatActivity() {
                 2 -> "Upcoming"
                 3 -> "Popular"
                 4 -> "Trailer"
-                else -> throw NotFoundException("Not Found")
+                5 -> "Favourites"
+                else -> throw Resources.NotFoundException("Tab index not found")
             }
         }.attach()
 
         val searchIcon: ImageView = findViewById(R.id.search_icon)
         searchIcon.setOnClickListener {
             Toast.makeText(this, "Search clicked", Toast.LENGTH_SHORT).show()
-
         }
     }
 }

@@ -16,12 +16,6 @@
         android:theme="@style/Theme.Movies_Poa_App"
         tools:targetApi="31">
         <activity
-            android:name=".favourite_item"
-            android:exported="false" />
-        <activity
-            android:name=".Favourit_item"
-            android:exported="false" />
-        <activity
             android:name=".view.activity.MainActivity"
             android:exported="true">
             <intent-filter>

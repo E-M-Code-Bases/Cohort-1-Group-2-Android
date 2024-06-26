@@ -36,3 +36,4 @@ androidx-paging-common-android = { group = "androidx.paging", name = "paging-com
 androidApplication = { id = "com.android.application", version.ref = "agp" }
 jetbrainsKotlinAndroid = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin" }
 
+
