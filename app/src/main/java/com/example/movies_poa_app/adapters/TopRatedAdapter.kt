@@ -16,7 +16,7 @@ class TopRatedAdapter (private var context: Context, private var list: List<Movi
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val inflater = LayoutInflater.from(context)
-        val binding: ItemTopmovieBinding = DataBindingUtil.inflate(inflater, R.layout.item_topmovie, parent, false)
+        val binding: ItemTopmovieBinding = ItemTopmovieBinding.inflate(inflater, parent, false)
         return ViewHolder(binding)
     }
 
@@ -26,20 +26,17 @@ class TopRatedAdapter (private var context: Context, private var list: List<Movi
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val movie = list[position]
-        holder.binding.movie = movie
+        holder.binding.movieTitle.text = movie.original_title
+        holder.binding.movieOverview.text = movie.overview
+        holder.binding.movieRating.text = movie.vote_count.toString()
 
-        val posterUrl = "https://image.tmdb.org/t/p/w500${movie.posterPath}"
+        val posterUrl = "https://image.tmdb.org/t/p/w500${movie.poster_path}"
 
         Picasso.get()
             .load(posterUrl)
             .placeholder(R.drawable.ic_launcher_background)
             .into(holder.binding.moviePoster)
 
-        holder.binding.executePendingBindings()
-    }
-
-    fun updateList(newList: List<Movie>) {
-        list = newList
     }
 
 }

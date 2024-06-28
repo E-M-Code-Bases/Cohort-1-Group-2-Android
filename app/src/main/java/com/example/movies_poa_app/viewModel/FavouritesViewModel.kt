@@ -3,6 +3,7 @@ package com.example.movies_poa_app.viewModel
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.viewModelScope
 import com.example.movies_poa_app.model.Movie
 import com.example.movies_poa_app.repository.MovieRepository
@@ -33,5 +34,11 @@ class FavouritesViewModel(private val repository: MovieRepository) : ViewModel()
             val response = repository.addFavoriteMovie(accountId, apiKey, sessionId, movieId)
             _addFavoriteStatus.postValue(response.isSuccessful)
         }
+    }
+}
+
+class FavoriteModelProvider(val repo: MovieRepository): ViewModelProvider.Factory{
+    override fun <T : ViewModel> create(modelClass: Class<T>): T {
+        return FavouritesViewModel(repo) as T
     }
 }

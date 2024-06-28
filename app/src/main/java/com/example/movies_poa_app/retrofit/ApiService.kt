@@ -28,7 +28,7 @@ interface ApiService {
 
 
     @GET("movie/top_rated")
-    suspend fun getTopRatedMovies(@Query("a46d79ac5127fe803aabf6513cafe146") apiKey: String): Response<MovieResponse>
+    suspend fun getTopRatedMovies(): Response<MovieResponse>
 
 
     @GET("account/{account_id}/favorite/movies")
@@ -38,8 +38,8 @@ interface ApiService {
     suspend fun addFavoriteMovie(@Path("account_id") accountId: Int, @Query("de95d5e165747c38cab2df155c80bcd7") apiKey: String, @Query("session_id") sessionId: String, @Body favoriteRequest: FavoriteRequest): Response<Unit>
 
 
-    @GET("movie/now_playing")
-    suspend fun getNowPlaying(@Query("api_key") apiKey: String,@Query("language") language: String, @Query("page") page: Int): Response<MovieResponse>
+    @GET("movie/popular")
+    suspend fun getNowPlaying( @Query("language") language: String = "en-US", @Query("page") page: Int = 1): Response<MovieResponse>
 
     @GET("movie/{movie_id}/videos")
     suspend fun getTrailers(@Path("movie_id") movieId: Int, @Query("de95d5e165747c38cab2df155c80bcd7") apiKey: String): Response<TrailerResponse>

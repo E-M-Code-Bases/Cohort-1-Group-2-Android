@@ -30,7 +30,7 @@ class NowPlayingAdapter (private var context: Context, private var list: List<Mo
         val movie = list[position]
         holder.binding.movie = movie
 
-        val posterUrl = "https://image.tmdb.org/t/p/w500${movie.posterPath}"
+        val posterUrl = "https://image.tmdb.org/t/p/w500${movie.poster_path}"
 
         Picasso.get()
             .load(posterUrl)

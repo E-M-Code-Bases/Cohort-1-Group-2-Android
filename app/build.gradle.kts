@@ -35,7 +35,9 @@ android {
         jvmTarget = "1.8"
     }
     buildFeatures {
+        viewBinding = true
         dataBinding = true
+
     }
 }
 
@@ -60,11 +62,12 @@ dependencies {
 
     implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.5.1")
     implementation("org.jetbrains.kotlinx:kotlinx-coroutines-android:1.5.1")
+    implementation("com.squareup.retrofit2:converter-gson:2.9.0")
 
-    implementation("io.insert-koin:koin-android:3.1.2")
-    implementation("io.insert-koin:koin-androidx-viewmodel:3.1.2")
-    implementation("io.insert-koin:koin-core:3.3.2")
-    implementation("io.insert-koin:koin-androidx:3.4.0")
+    //implementation("io.insert-koin:koin-android:3.1.2")
+    //implementation("io.insert-koin:koin-androidx-viewmodel:3.1.2")
+   // implementation("io.insert-koin:koin-core:3.3.2")
+    //implementation("io.insert-koin:koin-androidx:3.4.0")
 
     implementation("com.squareup.retrofit2:retrofit:2.9.0")
     implementation("com.squareup.retrofit2:converter-moshi:2.11.0")

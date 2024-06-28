@@ -3,6 +3,7 @@ package com.example.movies_poa_app.viewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.viewModelScope
 import com.example.movies_poa_app.model.Movie
 import com.example.movies_poa_app.repository.MovieRepository
@@ -16,10 +17,14 @@ class NowPlayingViewModel (private val movieRepository: MovieRepository)  : View
 
     private val movieserror = MutableLiveData<String>()
 
-    fun fetchNowPlaying(apiKey: String, language: String, page: Int) {
+    init{
+        fetchNowPlaying()
+    }
+
+    fun fetchNowPlaying() {
         viewModelScope.launch(Dispatchers.IO) {
             try {
-                val response = movieRepository.getNowPlaying(apiKey, language, page)
+                val response = movieRepository.getNowPlaying()
                 if (response.isSuccessful) {
                     val movies = response.body()?.results
                     _nowPlayingMovies.postValue(movies ?: emptyList())
@@ -32,4 +37,9 @@ class NowPlayingViewModel (private val movieRepository: MovieRepository)  : View
         }
     }
 
+}
+class RatedProvider(val movieRepository: MovieRepository): ViewModelProvider.Factory{
+    override fun <T : ViewModel> create(modelClass: Class<T>): T {
+        return NowPlayingViewModel(movieRepository) as T
+    }
 }

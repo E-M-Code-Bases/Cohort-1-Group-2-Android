@@ -11,7 +11,7 @@ import com.example.movies_poa_app.databinding.ItemMovieBinding
 class MoviesAdapter : RecyclerView.Adapter<MoviesAdapter.MovieViewHolder>() {
     class MovieViewHolder(private val binding: ItemMovieBinding) : RecyclerView.ViewHolder(binding.root) {
         fun bind(movie:Movie) {
-            binding.movieTitle.text = movie.originalTitle
+            binding.movieTitle.text = movie.original_title
             binding.description.text = movie.overview
         }
     }

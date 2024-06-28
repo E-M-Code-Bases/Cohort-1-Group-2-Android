@@ -49,6 +49,7 @@
             android:padding="10dp"
             android:layout_margin="10dp"/>
 
+
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/recyclerViewTopRated"
                 android:layout_width="match_parent"
@@ -57,6 +58,7 @@
                 android:paddingStart="12dp"
                 android:paddingEnd="12dp"
                 android:clipToPadding="false" />
+
 
 </LinearLayout>
 </ScrollView>
