@@ -11,11 +11,11 @@
     <path
         android:fillColor="#000000"
         android:pathData="M15,8.5C15,7.12 16.12,6 17.5,6C18.88,6 20,7.12 20,8.5C20,9.88 18.88,11 17.5,11C16.12,11 15,9.88 15,8.5z" />
-    <circle
-        android:fillColor="#FFFFFFFF"
-        android:cx="19.5"
-        android:cy="19.5"
-        android:r="3.5" />
+<!--    <circle-->
+<!--        android:fillColor="#FFFFFFFF"-->
+<!--        android:cx="19.5"-->
+<!--        android:cy="19.5"-->
+<!--        android:radiu="3.5" />-->
     <path
         android:fillColor="#FFFFFF"
         android:pathData="M18.5,18h2v1h-2v2h-1v-2h-2v-1h2v-2h1z" />

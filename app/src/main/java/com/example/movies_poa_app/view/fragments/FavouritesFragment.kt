@@ -7,17 +7,21 @@ import android.view.ViewGroup
 import com.example.movies_poa_app.R
 import com.example.movies_poa_app.viewModel.FavouritesViewModel
 import androidx.databinding.DataBindingUtil
+import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
 import com.example.movies_poa_app.adapters.FavouritesAdapter
 import com.example.movies_poa_app.adapters.MovieClickListener
 import com.example.movies_poa_app.databinding.FragmentFavouritesBinding
 import com.example.movies_poa_app.model.Movie
-import org.koin.androidx.viewmodel.ext.android.viewModel
+import com.example.movies_poa_app.repository.MovieRepository
+import com.example.movies_poa_app.retrofit.ApiService
+import com.example.movies_poa_app.retrofit.AppModule
+import com.example.movies_poa_app.viewModel.FavoriteModelProvider
 
 class FavouritesFragment : Fragment(), MovieClickListener {
 
     private lateinit var binding: FragmentFavouritesBinding
-    private val viewModel: FavouritesViewModel by viewModel()
+
     private lateinit var adapter: FavouritesAdapter
 
     override fun onCreateView(
@@ -25,7 +29,13 @@ class FavouritesFragment : Fragment(), MovieClickListener {
         savedInstanceState: Bundle?
     ): View? {
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_favourites, container, false)
-        binding.viewModel = viewModel
+        val service = AppModule().apiService()
+
+        val repo = MovieRepository(service)
+
+        val viewModel: FavouritesViewModel by viewModels {
+            FavoriteModelProvider(repo)
+        }
         binding.lifecycleOwner = viewLifecycleOwner
 
         adapter = FavouritesAdapter(emptyList(), this)

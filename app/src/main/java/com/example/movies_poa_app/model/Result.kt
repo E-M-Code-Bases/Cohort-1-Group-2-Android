@@ -1,7 +1,6 @@
 package com.example.movies_poa_app.model
 
-
-data class Movie(
+data class Result(
     val adult: Boolean,
     val backdrop_path: String,
     val genre_ids: List<Int>,
@@ -17,17 +16,3 @@ data class Movie(
     val vote_average: Double,
     val vote_count: Int
 )
-
-data class FavoriteRequest(
-    val media_type: String,
-    val media_id: Int,
-    val favorite: Boolean
-)
-data class MovieResponse (
-    val page: Int,
-    val results: List<Movie>,
-    val total_pages: Int,
-    val total_results: Int
-)
-
-

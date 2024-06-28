@@ -1,16 +1,8 @@
-<layout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
-
-<data>
-    <variable
-        name="movie"
-        type="com.example.movies_poa_app.model.Movie" />
-</data>
-
-<androidx.constraintlayout.widget.ConstraintLayout
-android:layout_width="match_parent"
-android:layout_height="wrap_content"
-android:padding="8dp">
+<androidx.constraintlayout.widget.ConstraintLayout android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:padding="8dp"
+    xmlns:android="http://schemas.android.com/apk/res/android">
 
 <ImageView
     android:id="@+id/moviePoster"
@@ -21,7 +13,7 @@ android:padding="8dp">
     app:layout_constraintDimensionRatio="2:3"
     app:layout_constraintStart_toStartOf="parent"
     app:layout_constraintTop_toTopOf="parent"
-    app:imageUrl="@{movie.posterPath}" />
+     />
 
 <LinearLayout
     android:id="@+id/movieDetails"
@@ -60,4 +52,3 @@ android:padding="8dp">
         android:textColor="@color/black" />
 </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>
-    </layout>
