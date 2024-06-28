@@ -43,7 +43,7 @@ class TopRatedFragment : Fragment() {
         viewModel.movies.observe(viewLifecycleOwner) { movies ->
             Log.d(TAG, movies.toString())
 
-            adapter = TopRatedAdapter(requireContext(), movies)
+            adapter = TopRatedAdapter(requireContext(), movies!!)
             binding.recyclerViewTopRated.layoutManager = LinearLayoutManager(requireContext())
             binding.recyclerViewTopRated.adapter = adapter
         }

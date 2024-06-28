@@ -15,37 +15,12 @@ import com.google.android.material.tabs.TabLayoutMediator
 
 class MainActivity : AppCompatActivity() {
 
-    private lateinit var tabLayout: TabLayout
-    private lateinit var viewPager: ViewPager2
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
         setContentView(R.layout.activity_main)
 
-        val toolbar: Toolbar = findViewById(R.id.toolbar)
-        setSupportActionBar(toolbar)
-        supportActionBar?.setDisplayShowTitleEnabled(false)
 
-        tabLayout = findViewById(R.id.tabLayout)
-        viewPager = findViewById(R.id.viewPager)
-
-        viewPager.adapter = PagerAdapter(this)
-        TabLayoutMediator(tabLayout, viewPager) { tab, index ->
-            tab.text = when (index) {
-                0 -> "Top Rated"
-                1 -> "Now Playing"
-                2 -> "Upcoming"
-                3 -> "Popular"
-                4 -> "Trailer"
-                5 -> "Favourites"
-                else -> throw Resources.NotFoundException("Tab index not found")
-            }
-        }.attach()
-
-        val searchIcon: ImageView = findViewById(R.id.search_icon)
-        searchIcon.setOnClickListener {
-            Toast.makeText(this, "Search clicked", Toast.LENGTH_SHORT).show()
-        }
     }
 }

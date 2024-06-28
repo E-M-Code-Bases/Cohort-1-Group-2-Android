@@ -2,6 +2,7 @@ plugins {
     alias(libs.plugins.androidApplication)
     alias(libs.plugins.jetbrainsKotlinAndroid)
     id("kotlin-kapt")
+    id("androidx.navigation.safeargs.kotlin")
 }
 
 android {
@@ -68,6 +69,10 @@ dependencies {
     //implementation("io.insert-koin:koin-androidx-viewmodel:3.1.2")
    // implementation("io.insert-koin:koin-core:3.3.2")
     //implementation("io.insert-koin:koin-androidx:3.4.0")
+
+    implementation ("androidx.navigation:navigation-fragment-ktx:2.5.3") // or the latest version
+    implementation ("androidx.navigation:navigation-ui-ktx:2.5.3") // or the latest version
+
 
     implementation("com.squareup.retrofit2:retrofit:2.9.0")
     implementation("com.squareup.retrofit2:converter-moshi:2.11.0")

@@ -1,5 +1,7 @@
 package com.example.movies_poa_app.model
 
+import java.io.Serializable
+
 
 data class Movie(
     val adult: Boolean,
@@ -16,7 +18,7 @@ data class Movie(
     val video: Boolean,
     val vote_average: Double,
     val vote_count: Int
-)
+):Serializable
 
 data class FavoriteRequest(
     val media_type: String,
