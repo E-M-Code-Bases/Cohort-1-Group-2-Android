@@ -25,10 +25,11 @@ class PlayFragment : Fragment() {
         movie = args.movie
         Log.d(TAG, movie!!.toString())
 
-
         //bind movie to the view
-
         binding.movieTitle.text = movie!!.original_title
+        binding.movieOverview.text= movie!!.overview
+        binding.releasedate.text= movie!!.release_date
+       // binding.movieImage.text= movie!!.poster_path
 
         return binding.root
     }

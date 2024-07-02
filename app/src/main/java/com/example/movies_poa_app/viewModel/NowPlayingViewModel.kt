@@ -1,44 +1,46 @@
 package com.example.movies_poa_app.viewModel
 
-import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.viewModelScope
 import com.example.movies_poa_app.model.Movie
 import com.example.movies_poa_app.repository.MovieRepository
-import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.delay
+import kotlinx.coroutines.isActive
 import kotlinx.coroutines.launch
 
 class NowPlayingViewModel (private val movieRepository: MovieRepository)  : ViewModel() {
 
-    private val _nowPlayingMovies = MutableLiveData<List<Movie>>()
-    val nowPlayingMovies: LiveData<List<Movie>> get() = _nowPlayingMovies
+  val movies = MutableLiveData<List<Movie>>()
+    private val _moviesError = MutableLiveData<String>()
 
-    private val movieserror = MutableLiveData<String>()
 
-    init{
-        fetchNowPlaying()
-    }
+    init {
+       fetchNowPlaying()
+   }
 
-    fun fetchNowPlaying() {
-        viewModelScope.launch(Dispatchers.IO) {
-            try {
-                val response = movieRepository.getNowPlaying()
-                if (response.isSuccessful) {
-                    val movies = response.body()?.results
-                    _nowPlayingMovies.postValue(movies ?: emptyList())
-                } else {
-                    movieserror.postValue("Request failed with status ${response.code()}")
+    private fun fetchNowPlaying() {
+        viewModelScope.launch {
+            while (isActive){
+                try {
+                    val response = movieRepository.getTopRatedMovies()
+                    if (response.isSuccessful) {
+                        movies.postValue(response.body()?.results ?: emptyList())
+                    } else {
+                        _moviesError.postValue(response.message())
+                    }
+                } catch (e: Exception) {
+                    _moviesError.postValue(e.message ?: "Unknown error occurred")
                 }
-            } catch (e: Exception) {
-                movieserror.postValue(e.message ?: "Unknown error occurred")
+                delay(10000L)
             }
+
         }
     }
 
 }
-class RatedProvider(val movieRepository: MovieRepository): ViewModelProvider.Factory{
+class NowPlayingProvider(val movieRepository: MovieRepository): ViewModelProvider.Factory{
     override fun <T : ViewModel> create(modelClass: Class<T>): T {
         return NowPlayingViewModel(movieRepository) as T
     }

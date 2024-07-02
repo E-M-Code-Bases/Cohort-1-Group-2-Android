@@ -1,10 +1,12 @@
 package com.example.movies_poa_app.adapters
 
 import android.content.Context
+import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.databinding.BindingAdapter
 import androidx.databinding.DataBindingUtil
+import androidx.navigation.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import com.example.movies_poa_app.R
 import com.example.movies_poa_app.databinding.NowplayingItemsBinding
@@ -14,11 +16,13 @@ import com.squareup.picasso.Picasso
 
 class NowPlayingAdapter (private var context: Context, private var list: List<Movie>): RecyclerView.Adapter<NowPlayingAdapter.ViewHolder> () {
 
-    inner class ViewHolder( val binding: NowplayingItemsBinding) : RecyclerView.ViewHolder(binding.root)
+    inner class ViewHolder(val binding: NowplayingItemsBinding) :
+        RecyclerView.ViewHolder(binding.root)
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val inflater = LayoutInflater.from(context)
-        val binding: NowplayingItemsBinding = DataBindingUtil.inflate(inflater, R.layout.nowplaying_items, parent, false)
+        val binding: NowplayingItemsBinding =
+            DataBindingUtil.inflate(inflater, R.layout.nowplaying_items, parent, false)
         return ViewHolder(binding)
     }
 
@@ -36,14 +40,15 @@ class NowPlayingAdapter (private var context: Context, private var list: List<Mo
             .load(posterUrl)
             .placeholder(R.drawable.ic_launcher_background)
             .into(holder.binding.posterImageView)
+        holder.binding.root.setOnClickListener {
+            val bundle = Bundle().apply {
+                putSerializable("movie", movie)
+            }
 
-        holder.binding.executePendingBindings()
+            holder.binding.root.findNavController()
+                .navigate(R.id.action_singleMovieFragment_to_playFragment, bundle)
+        }
+
     }
-
-    fun updateList(newList: List<Movie>) {
-        list = newList
-
-    }
-
-    }
+}
 
