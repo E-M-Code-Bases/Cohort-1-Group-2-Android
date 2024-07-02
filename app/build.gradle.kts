@@ -80,4 +80,7 @@ dependencies {
 
     implementation("androidx.viewpager2:viewpager2:1.0.0")
     implementation("com.squareup.picasso:picasso:2.71828")
+
+    implementation ("com.pierfrancescosoffritti.androidyoutubeplayer:core:12.0.0")
+
 }
