@@ -8,4 +8,6 @@
     <string name="download">Download</string>
     <string name="favorites">Favorites</string>
     <string name="home">Home</string>
+    <string name="favorite_icon">Add Favourite</string>
+    <string name="movie_poster">Movie Image</string>
 </resources>
