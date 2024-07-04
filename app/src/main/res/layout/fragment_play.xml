@@ -5,7 +5,7 @@
     <data>
         <variable
             name="movie"
-            type="com.example.movies_poa_app.model.MovieDetails"/>
+            type="com.example.movies_poa_app.model.Movie"/>
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -29,8 +29,8 @@
                 <ImageView
                     android:id="@+id/moviePoster"
                     android:layout_width="200dp"
-                    android:layout_height="300dp"
-                    android:layout_marginBottom="6dp"
+                    android:layout_height="200dp"
+                    android:layout_marginTop="40dp"
                     android:contentDescription="@string/movie_poster"
                     app:layout_constraintBottom_toTopOf="@+id/titleLinearLayout"
                     app:layout_constraintEnd_toEndOf="parent"
@@ -54,13 +54,13 @@
                         android:layout_marginEnd="109dp"
                         android:layout_marginBottom="3dp"
                         android:gravity="center"
-                        android:text="@{movie.original_title}"
                         android:textSize="24sp"
                         android:textStyle="bold"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toStartOf="@+id/favoriteIcon"
                         app:layout_constraintStart_toStartOf="parent"
                         tools:text="Movie Title" />
+
 
                     <ImageView
                         android:id="@+id/favoriteIcon"
@@ -81,7 +81,6 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="4dp"
                     android:layout_marginBottom="4dp"
-                    android:text="@{movie.release_date}"
                     android:textSize="14sp"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
@@ -93,7 +92,6 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="8dp"
-                    android:text="@{String.valueOf(movie.vote_average)}"
                     android:textSize="14sp"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
@@ -107,7 +105,6 @@
                     android:layout_marginTop="8dp"
                     android:layout_marginBottom="16dp"
                     android:lineSpacingExtra="4dp"
-                    android:text="@{movie.overview}"
                     android:textSize="16sp"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
