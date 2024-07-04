@@ -51,13 +51,14 @@ class PlayFragment : Fragment() {
         binding.movieTitle.text = movie.original_title
         Log.d(TAG, "Title set: ${movie.original_title}")
 
-        binding.movieReleaseDate.text = movie.release_date
+        binding.movieReleaseDate.text= movie.release_date
         Log.d(TAG, "Release Date set: ${movie.release_date}")
 
         binding.movieRating.text = movie.vote_average.toString()
         Log.d(TAG, "Rating set: ${movie.vote_average}")
 
-        binding.movieOverview.text = movie.overview
+        binding.movieOverview.text= movie.overview
         Log.d(TAG, "Overview set: ${movie.overview}")
     }
 }
+
