@@ -3,8 +3,9 @@ package com.example.movies_poa_app.repository
 import com.example.movies_poa_app.model.MovieResponse
 import com.example.movies_poa_app.retrofit.ApiService
 import com.example.movies_poa_app.model.FavoriteRequest
-import com.example.movies_poa_app.model.MovieDetails
+import com.example.movies_poa_app.model.Movie
 import com.example.movies_poa_app.model.TrailerResponse
+import retrofit2.HttpException
 import retrofit2.Response
 
 class MovieRepository(private val service: ApiService) {
@@ -32,35 +33,44 @@ class MovieRepository(private val service: ApiService) {
     }
 
     suspend fun getFavouriteMovies(
-        accountId: Int,
-        apiKey: String,
-        sessionId: String,
+        accountId: Int
     ): Response<MovieResponse> {
-        return service.getFavoriteMovies(accountId, apiKey, sessionId)
+        return service.getFavoriteMovies(accountId)
 
 
     }
 
-    suspend fun addFavoriteMovie(
-        accountId: Int,
-        apiKey: String,
-        sessionId: String,
-        movieId: Int,
-    ): Response<Unit> {
-        val favoriteRequest =
-            FavoriteRequest(media_type = "movie", media_id = movieId, favorite = true)
-        return service.addFavoriteMovie(accountId, apiKey, sessionId, favoriteRequest)
+    suspend fun addFavoriteMovie(accountId: String, authHeader: String, movie: Movie) {
+        val request = FavoriteRequest(media_type = "movie", media_id = movie.id, favorite = true)
+        val response = service.addFavoriteMovie(accountId, authHeader, request)
+        if (!response.isSuccessful) throw HttpException(response)
 
     }
 
-    suspend fun getTrailer(apiKey: Int, movieId: String): Response<TrailerResponse> {
-        return service.getTrailers(apiKey, movieId)
-    }
-
-    suspend fun  showDetails(apiKey: String,movieId: Int):Response<MovieDetails>{
-        return  service.showDetail(movieId,apiKey)
-    }
+    suspend fun removeFavorite(accountId: String, authHeader: String, movieId: Int) {
+    val request = FavoriteRequest(media_type = "movie", media_id = movieId, favorite = false)
+    val response = service.addFavoriteMovie(accountId, authHeader, request)
+    if (!response.isSuccessful) throw HttpException(response)
 }
+
+
+    suspend fun getTrailer(movieId: Int): Response<TrailerResponse> {
+        return service.getTrailers(movieId)
+    }
+
+}
+
+
+
+//suspend fun isFavorite(accountId: String, authHeader: String, movieId: Int): Boolean {
+//    val response = service.getFavoriteMovies(accountId, authHeader)
+//    if (response.isSuccessful) {
+//        val favoriteMovies = response.body()?.results ?: emptyList()
+//        return favoriteMovies.any { it.id == movieId }
+//    }
+//    return false
+//}
+
 
 
 
