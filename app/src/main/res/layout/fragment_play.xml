@@ -1,3 +1,4 @@
+<?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
@@ -6,6 +7,9 @@
         <variable
             name="movie"
             type="com.example.movies_poa_app.model.Movie"/>
+        <variable
+            name="viewmodel"
+            type="com.example.movies_poa_app.viewModel.FavouritesViewModel"/>
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -61,7 +65,6 @@
                         app:layout_constraintStart_toStartOf="parent"
                         tools:text="Movie Title" />
 
-
                     <ImageView
                         android:id="@+id/favoriteIcon"
                         android:layout_width="wrap_content"
@@ -69,6 +72,7 @@
                         android:layout_gravity="center_vertical"
                         android:layout_marginEnd="30dp"
                         android:contentDescription="@string/favorite_icon"
+                        android:onClick="@{() -> viewmodel.toggleFavorite(movie)}"
                         android:padding="8dp"
                         android:src="@drawable/favorite_icon"
                         app:layout_constraintEnd_toEndOf="parent"

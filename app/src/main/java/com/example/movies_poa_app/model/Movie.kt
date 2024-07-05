@@ -20,16 +20,7 @@ data class Movie(
     val vote_count: Int
 ):Serializable
 
-data class FavoriteRequest(
-    val media_type: String,
-    val media_id: Int,
-    val favorite: Boolean
-)
-data class MovieResponse (
-    val page: Int,
-    val results: List<Movie>,
-    val total_pages: Int,
-    val total_results: Int
-)
+
+
 
 
