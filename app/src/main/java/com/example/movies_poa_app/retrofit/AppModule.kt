@@ -1,23 +1,14 @@
 package com.example.movies_poa_app.retrofit
 
-import com.example.movies_poa_app.repository.MovieRepository
-import com.example.movies_poa_app.viewModel.FavouritesViewModel
-import com.example.movies_poa_app.viewModel.PopularViewModel
-import com.example.movies_poa_app.viewModel.NowPlayingViewModel
-import com.example.movies_poa_app.viewModel.ShowDetailsViewModel
-import com.example.movies_poa_app.viewModel.TopRatedViewModel
-import com.example.movies_poa_app.viewModel.TrailerViewModel
-import com.example.movies_poa_app.viewModel.UpcomingViewModel
 import okhttp3.Interceptor
 
 import okhttp3.OkHttpClient
 import okhttp3.Response
-import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
-import retrofit2.converter.moshi.MoshiConverterFactory
 val baseUrl = "https://api.themoviedb.org/3/"
-val API_KEY = "eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiI5OWNjMTMyZGJhODM0ZTRlNTZlYWZkYWNhMzgyYjJkZCIsInN1YiI6IjY2NjkzYzE2ZTcxMDM0MDEwZmJlYWE1OCIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.s2yy6z0a1ZRt05q25ZZ34dugk3MTedmTOUfkzvMb_uE"
+const val API_KEY = "eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJlYWVmZDRlZmVkYjFlOTU2ZTMwMDE0ZDM0Y2U1MThlMyIsIm5iZiI6MTcxOTkyMjc0Mi41NDcwNTgsInN1YiI6IjY2NzEzZjU4OTYyYjg5MDdlOTBkZjQ5ZSIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.HTDnq4slEbwb5YO1DMnPHb62-GjQW1brjiqmY-KXX7U"
+const val account_id = "21334157"
 
 class AppModule {
 
