@@ -1,65 +1,132 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:context=".view.fragments.PlayFragment">
+    xmlns:tools="http://schemas.android.com/tools">
 
+    <data>
+        <variable
+            name="movie"
+            type="com.example.movies_poa_app.model.Movie"/>
+        <variable
+            name="viewmodel"
+            type="com.example.movies_poa_app.viewModel.FavouritesViewModel"/>
+    </data>
 
-    <ImageView
-        android:id="@+id/movieImage"
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:src="@mipmap/flowers"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.157" />
+        android:layout_height="match_parent"
+        android:padding="16dp"
+        tools:context=".view.fragments.PlayFragment">
 
-    <ImageButton
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:src="@drawable/favorite_icon"
-        android:backgroundTint="@color/yellow"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toEndOf="@id/movieImage"
-        app:layout_constraintTop_toBottomOf="@id/movieImage"
-        app:layout_constraintVertical_bias="0.121" />
+        <ScrollView
+            android:id="@+id/scrollable"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
 
-    <TextView
-        android:id="@+id/movieTitle"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="44dp"
-        android:textSize="20sp"
-        android:textStyle="normal"
-       app:layout_constraintTop_toBottomOf="@id/movieImage"
-        app:layout_constraintStart_toStartOf="parent"/>
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
 
+                <ImageView
+                    android:id="@+id/moviePoster"
+                    android:layout_width="200dp"
+                    android:layout_height="200dp"
+                    android:layout_marginTop="40dp"
+                    android:contentDescription="@string/movie_poster"
+                    app:layout_constraintBottom_toTopOf="@+id/titleLinearLayout"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    tools:srcCompat="@drawable/image_placeholder" />
 
-    <TextView
-        android:id="@+id/movieOverview"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="44dp"
-        android:text="Play now"
-        android:textSize="12sp"
-        android:textStyle="normal"
-        app:layout_constraintTop_toBottomOf="@id/movieTitle"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintVertical_bias="0.096" />
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/titleLinearLayout"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintBottom_toBottomOf="@id/moviePoster"
+                    app:layout_constraintTop_toTopOf="@id/movieReleaseDate"
+                    app:layout_constraintVertical_bias="0.5">
 
-    <TextView
-        android:id="@+id/releasedate"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="44dp"
-        app:layout_constraintTop_toBottomOf="@id/movieOverview"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintVertical_bias="0.096"
-        android:text="Play now"
-        android:textSize="12sp"
-        android:textStyle="normal"/>
+                    <TextView
+                        android:id="@+id/movieTitle"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="109dp"
+                        android:layout_marginEnd="109dp"
+                        android:layout_marginBottom="3dp"
+                        android:gravity="center"
+                        android:textSize="24sp"
+                        android:textStyle="bold"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toStartOf="@+id/favoriteIcon"
+                        app:layout_constraintStart_toStartOf="parent"
+                        tools:text="Movie Title" />
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+                    <ImageView
+                        android:id="@+id/favoriteIcon"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:layout_marginEnd="30dp"
+                        android:contentDescription="@string/favorite_icon"
+                        android:onClick="@{() -> viewmodel.toggleFavorite(movie)}"
+                        android:padding="8dp"
+                        android:src="@drawable/favorite_icon"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+                <TextView
+                    android:id="@+id/movieReleaseDate"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="4dp"
+                    android:layout_marginBottom="4dp"
+                    android:textSize="14sp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/titleLinearLayout"
+                    tools:text="Release Date: YYYY-MM-DD" />
+
+                <TextView
+                    android:id="@+id/movieRating"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="8dp"
+                    android:textSize="14sp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/movieReleaseDate"
+                    tools:text="Rating: X.X/10" />
+
+                <TextView
+                    android:id="@+id/movieOverview"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginBottom="16dp"
+                    android:lineSpacingExtra="4dp"
+                    android:textSize="16sp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/movieRating"
+                    tools:text="Movie overview goes here. This is a placeholder for the movie synopsis." />
+
+                <com.pierfrancescosoffritti.androidyoutubeplayer.core.player.views.YouTubePlayerView
+                    android:id="@+id/trailerView"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="12dp"
+                    app:layout_constraintDimensionRatio="16:9"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.0"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/movieOverview"
+                    tools:ignore="MissingClass" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </ScrollView>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>
