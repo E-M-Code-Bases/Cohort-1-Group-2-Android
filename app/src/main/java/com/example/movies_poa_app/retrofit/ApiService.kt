@@ -32,7 +32,9 @@ interface ApiService {
 
 
     @GET("account/{account_id}/favorite/movies")
-    suspend fun getFavoriteMovies(@Path("account_id") accountId: Int, @Query("de95d5e165747c38cab2df155c80bcd7") apiKey: String, @Query("session_id") sessionId: String): Response<MovieResponse>
+
+    suspend fun getFavoriteMovies(@Path("account_id") accountId: String): Response<MovieResponse>
+   
 
     @POST("account/{account_id}/favorite")
     suspend fun addFavoriteMovie(@Path("account_id") accountId: Int, @Query("de95d5e165747c38cab2df155c80bcd7") apiKey: String, @Query("session_id") sessionId: String, @Body favoriteRequest: FavoriteRequest): Response<Unit>
