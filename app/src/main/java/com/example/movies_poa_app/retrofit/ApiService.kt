@@ -39,7 +39,7 @@ interface ApiService {
                                  @Header("Authorization") authHeader: String,
                                  @Body favoriteRequest: FavoriteRequest): Response<Unit>
 
-    @GET("movie/popular")
+    @GET("movie/now_playing")
     suspend fun getNowPlaying( @Query("language") language: String = "en-US", @Query("page") page: Int = 1): Response<MovieResponse>
 
     @GET("movie/{movie_id}/videos")

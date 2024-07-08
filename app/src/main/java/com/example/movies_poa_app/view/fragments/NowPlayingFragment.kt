@@ -15,7 +15,7 @@ import com.example.movies_poa_app.retrofit.AppModule
 import com.example.movies_poa_app.viewModel.NowPlayingProvider
 import com.example.movies_poa_app.viewModel.NowPlayingViewModel
 
-private const val TAG = "rated1"
+private const val TAG = "Nowplaying"
 
 class NowPlayingFragment : Fragment() {
    private lateinit var binding: FragmentNowPlayingBinding
