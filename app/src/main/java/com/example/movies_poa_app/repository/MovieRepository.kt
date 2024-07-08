@@ -26,11 +26,9 @@ class MovieRepository(private val service: ApiService) {
         return service.getTopRatedMovies()
     }
 
-    suspend fun getNowPlaying(
-
-    ): Response<MovieResponse> {
-        return service.getNowPlaying()
-    }
+   suspend fun getNowPlaying(): Response<MovieResponse>{
+       return service.getNowPlaying()
+   }
 
     suspend fun addFavoriteMovie(accountId: String, authHeader: String, movie: Movie) {
         val request = FavoriteRequest(media_type = "movie", media_id = movie.id, favorite = true)

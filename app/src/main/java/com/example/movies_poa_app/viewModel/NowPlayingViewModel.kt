@@ -24,7 +24,7 @@ class NowPlayingViewModel (private val movieRepository: MovieRepository)  : View
         viewModelScope.launch {
             while (isActive){
                 try {
-                    val response = movieRepository.getTopRatedMovies()
+                    val response = movieRepository.getNowPlaying()
                     if (response.isSuccessful) {
                         movies.postValue(response.body()?.results ?: emptyList())
                     } else {
