@@ -10,7 +10,7 @@ import retrofit2.http.Header
 import retrofit2.http.POST
 import retrofit2.http.Path
 import retrofit2.http.Query
-
+private const val key = "c86b2436b1121f1894caf99d7c17452d"
 interface ApiService {
 
     @GET("movie/popular")
@@ -18,10 +18,12 @@ interface ApiService {
         @Query("c86b2436b1121f1894caf99d7c17452d") apiKey: String,
     ):MovieResponse
 
+    @GET("movie/")
+    suspend fun getTvShows()
 
     @GET("movie/upcoming")
     suspend fun getUpcoming(
-        @Query("c86b2436b1121f1894caf99d7c17452d") apiKey: String)
+        @Query("key") apiKey: String = key): Response<MovieResponse>
 
     @GET("search/movie")
     suspend fun searchMovies(@Query("c86b2436b1121f1894caf99d7c17452d") apiKey: String, @Query("query") query: String): MovieResponse
