@@ -1,38 +1,55 @@
 package com.example.movies_poa_app.adapters
 
+import android.content.Context
+import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.databinding.BindingAdapter
 import androidx.databinding.DataBindingUtil
+import androidx.navigation.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import com.example.movies_poa_app.R
 import com.example.movies_poa_app.databinding.FavouriteItemBinding
+import com.example.movies_poa_app.databinding.NowplayingItemsBinding
 import com.example.movies_poa_app.model.Movie
+import com.squareup.picasso.Picasso
 
-class FavouritesAdapter(
-    private var movies: List<Movie>,
-    private val clickListener: MovieClickListener
-) : RecyclerView.Adapter<FavouritesAdapter.MovieViewHolder>() {
 
-    class MovieViewHolder(val binding: FavouriteItemBinding) : RecyclerView.ViewHolder(binding.root)
+class FavouritesAdapter (private var context: Context, private var list: List<Movie>): RecyclerView.Adapter<FavouritesAdapter.ViewHolder> () {
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MovieViewHolder {
-        val layoutInflater = LayoutInflater.from(parent.context)
-        val binding: FavouriteItemBinding = DataBindingUtil.inflate(layoutInflater, R.layout.favourite_item, parent, false)
-        return MovieViewHolder(binding)
+    inner class ViewHolder(val binding: FavouriteItemBinding) :
+        RecyclerView.ViewHolder(binding.root)
+
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
+        val inflater = LayoutInflater.from(context)
+        val binding: FavouriteItemBinding =
+            DataBindingUtil.inflate(inflater, R.layout.favourite_item, parent, false)
+        return ViewHolder(binding)
     }
 
-    override fun onBindViewHolder(holder: MovieViewHolder, position: Int) {
-        holder.binding.movie = movies[position]
-        holder.binding.clickListener = clickListener
-        holder.binding.executePendingBindings()
+    override fun getItemCount(): Int {
+        return list.size
     }
 
-    override fun getItemCount(): Int = movies.size
+    override fun onBindViewHolder(holder: ViewHolder, position: Int) {
+        val movie = list[position]
+        holder.binding.movie = movie
 
-    fun updateMovies(newMovies: List<Movie>) {
-        movies = newMovies
+        val posterUrl = "https://image.tmdb.org/t/p/w500${movie.poster_path}"
+
+        Picasso.get()
+            .load(posterUrl)
+            .placeholder(R.drawable.ic_launcher_background)
+            .into(holder.binding.posterImageView)
+        holder.binding.root.setOnClickListener {
+            val bundle = Bundle().apply {
+                putSerializable("movie", movie)
+            }
+
+            holder.binding.root.findNavController()
+                .navigate(R.id.action_singleMovieFragment_to_playFragment, bundle)
+        }
+
     }
 }
-interface MovieClickListener {
-    fun onMovieClick(movie: Movie)
-}
+

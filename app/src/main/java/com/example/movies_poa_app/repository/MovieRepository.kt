@@ -21,7 +21,7 @@ class MovieRepository(private val service: ApiService) {
     suspend fun getUpcoming(apiKey: String) = service.getUpcoming(apiKey)
 
 
-    suspend fun getTopRatedMovies() :Response<MovieResponse>{
+    suspend fun getTopRatedMovies(): Response<MovieResponse> {
         ///return null
         return service.getTopRatedMovies()
     }
@@ -32,14 +32,6 @@ class MovieRepository(private val service: ApiService) {
         return service.getNowPlaying()
     }
 
-    suspend fun getFavouriteMovies(
-        accountId: Int
-    ): Response<MovieResponse> {
-        return service.getFavoriteMovies(accountId)
-
-
-    }
-
     suspend fun addFavoriteMovie(accountId: String, authHeader: String, movie: Movie) {
         val request = FavoriteRequest(media_type = "movie", media_id = movie.id, favorite = true)
         val response = service.addFavoriteMovie(accountId, authHeader, request)
@@ -48,28 +40,34 @@ class MovieRepository(private val service: ApiService) {
     }
 
     suspend fun removeFavorite(accountId: String, authHeader: String, movieId: Int) {
-    val request = FavoriteRequest(media_type = "movie", media_id = movieId, favorite = false)
-    val response = service.addFavoriteMovie(accountId, authHeader, request)
-    if (!response.isSuccessful) throw HttpException(response)
-}
+        val request = FavoriteRequest(media_type = "movie", media_id = movieId, favorite = false)
+        val response = service.addFavoriteMovie(accountId, authHeader, request)
+        if (!response.isSuccessful) throw HttpException(response)
+    }
 
 
     suspend fun getTrailer(movieId: Int): Response<TrailerResponse> {
         return service.getTrailers(movieId)
     }
 
+
+    suspend fun isFavorite(accountId: String, authHeader: String, movieId: Int): Boolean {
+        val response = service.getFavoriteMovies(accountId)
+        if (response.isSuccessful) {
+            val favoriteMovies = response.body()?.results ?: emptyList()
+            return favoriteMovies.any { it.id == movieId }
+        }
+        return false
+    }
+
+    suspend fun getFavouriteMovies(
+        accountId: String
+    ): Response<MovieResponse> {
+        return service.getFavoriteMovies(accountId)
+
+
+    }
 }
-
-
-
-//suspend fun isFavorite(accountId: String, authHeader: String, movieId: Int): Boolean {
-//    val response = service.getFavoriteMovies(accountId, authHeader)
-//    if (response.isSuccessful) {
-//        val favoriteMovies = response.body()?.results ?: emptyList()
-//        return favoriteMovies.any { it.id == movieId }
-//    }
-//    return false
-//}
 
 
 
