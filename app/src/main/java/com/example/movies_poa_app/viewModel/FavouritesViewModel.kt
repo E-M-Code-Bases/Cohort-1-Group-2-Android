@@ -10,7 +10,6 @@ import com.example.movies_poa_app.model.Movie
 import com.example.movies_poa_app.repository.MovieRepository
 import com.example.movies_poa_app.retrofit.API_KEY
 import com.example.movies_poa_app.retrofit.account_id
-import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
 class FavouritesViewModel(private val repository: MovieRepository) : ViewModel() {
@@ -19,16 +18,8 @@ class FavouritesViewModel(private val repository: MovieRepository) : ViewModel()
     val isFavorite: LiveData<Boolean> get() = _isFavorite
 
 
-//    fun getFavoriteMovies(accountId: Int, apiKey: String, sessionId: String) {
-//        viewModelScope.launch(Dispatchers.IO) {
-//            val response = repository.getFavouriteMovies(accountId)
-//            if (response.isSuccessful) {
-//                _movies.postValue(response.body()?.results)
-//            } else {
-//                _movies.postValue(emptyList())
-//            }
-//        }
-//    }
+    private val _favoriteMovies = MutableLiveData<List<Movie>>()
+    val favoriteMovies: LiveData<List<Movie>> get() = _favoriteMovies
 
 
     fun toggleFavorite(movie: Movie) {
@@ -47,14 +38,34 @@ class FavouritesViewModel(private val repository: MovieRepository) : ViewModel()
             }
         }
     }
-}
 
-class FavouritesViewModelFactory(private val repository: MovieRepository) : ViewModelProvider.Factory {
-    override fun <T : ViewModel> create(modelClass: Class<T>): T {
-        if (modelClass.isAssignableFrom(FavouritesViewModel::class.java)) {
-            @Suppress("UNCHECKED_CAST")
-            return FavouritesViewModel(repository) as T
+
+    fun fetchFavoriteMovies(accountId: String, authHeader: String) {
+        viewModelScope.launch {
+            try {
+                val response = repository.getFavouriteMovies(accountId, authHeader)
+                if (response.isSuccessful) {
+                    _favoriteMovies.postValue(response.body()?.results)
+                } else {
+                    Log.e(
+                        "FavoriteViewModel",
+                        "Failed to fetch favorite movies: ${response.errorBody()?.string()}"
+                    )
+                }
+            } catch (e: Exception) {
+                Log.e("FavoriteViewModel", "Error fetching favorite movies", e)
+            }
         }
-        throw IllegalArgumentException("Unknown ViewModel class")
+    }
+
+    class FavouritesViewModelFactory(private val repository: MovieRepository) :
+        ViewModelProvider.Factory {
+        override fun <T : ViewModel> create(modelClass: Class<T>): T {
+            if (modelClass.isAssignableFrom(FavouritesViewModel::class.java)) {
+                @Suppress("UNCHECKED_CAST")
+                return FavouritesViewModel(repository) as T
+            }
+            throw IllegalArgumentException("Unknown ViewModel class")
+        }
     }
 }

@@ -32,7 +32,8 @@ interface ApiService {
 
 
     @GET("account/{account_id}/favorite/movies")
-    suspend fun getFavoriteMovies(@Path("account_id") accountId: String): Response<MovieResponse>
+    suspend fun getFavoriteMovies(@Path("account_id") accountId: String,
+                                  @Header("Authorization") authorization: String): Response<MovieResponse>
 
     @POST("account/{account_id}/favorite")
     suspend fun addFavoriteMovie(@Path("account_id") accountId: String,

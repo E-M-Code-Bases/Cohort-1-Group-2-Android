@@ -52,7 +52,7 @@ class MovieRepository(private val service: ApiService) {
 
 
     suspend fun isFavorite(accountId: String, authHeader: String, movieId: Int): Boolean {
-        val response = service.getFavoriteMovies(accountId)
+        val response = service.getFavoriteMovies(accountId,authHeader)
         if (response.isSuccessful) {
             val favoriteMovies = response.body()?.results ?: emptyList()
             return favoriteMovies.any { it.id == movieId }
@@ -61,9 +61,9 @@ class MovieRepository(private val service: ApiService) {
     }
 
     suspend fun getFavouriteMovies(
-        accountId: String
+        accountId: String, authHeader: String
     ): Response<MovieResponse> {
-        return service.getFavoriteMovies(accountId)
+        return service.getFavoriteMovies(accountId,authHeader)
 
 
     }

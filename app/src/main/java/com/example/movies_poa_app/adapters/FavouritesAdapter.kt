@@ -4,18 +4,16 @@ import android.content.Context
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import androidx.databinding.BindingAdapter
 import androidx.databinding.DataBindingUtil
 import androidx.navigation.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import com.example.movies_poa_app.R
 import com.example.movies_poa_app.databinding.FavouriteItemBinding
-import com.example.movies_poa_app.databinding.NowplayingItemsBinding
 import com.example.movies_poa_app.model.Movie
 import com.squareup.picasso.Picasso
 
 
-class FavouritesAdapter (private var context: Context, private var list: List<Movie>): RecyclerView.Adapter<FavouritesAdapter.ViewHolder> () {
+class FavouritesAdapter(private var context: Context, var movies: List<Movie>): RecyclerView.Adapter<FavouritesAdapter.ViewHolder> () {
 
     inner class ViewHolder(val binding: FavouriteItemBinding) :
         RecyclerView.ViewHolder(binding.root)
@@ -28,11 +26,11 @@ class FavouritesAdapter (private var context: Context, private var list: List<Mo
     }
 
     override fun getItemCount(): Int {
-        return list.size
+        return movies.size
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        val movie = list[position]
+        val movie = movies[position]
         holder.binding.movie = movie
 
         val posterUrl = "https://image.tmdb.org/t/p/w500${movie.poster_path}"

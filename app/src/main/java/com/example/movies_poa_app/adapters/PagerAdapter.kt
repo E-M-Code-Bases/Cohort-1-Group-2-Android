@@ -4,6 +4,7 @@ import android.content.res.Resources.NotFoundException
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentActivity
 import androidx.viewpager2.adapter.FragmentStateAdapter
+import com.example.movies_poa_app.view.fragments.FavouritesFragment
 import com.example.movies_poa_app.view.fragments.TopRatedFragment
 import com.example.movies_poa_app.view.fragments.NowPlayingFragment
 import com.example.movies_poa_app.view.fragments.PopularFragment
@@ -27,13 +28,15 @@ return  when(position){
         UpcomingFragment()
     }
     3 -> {
-        PopularFragment()
-    }
+        FavouritesFragment()    }
+
     4 -> {
         TrailerFragment()
     }
-//    5 -> {
-//       FavouritesFragment()    }
+    5-> {
+        PopularFragment()
+    }
+
 
 
     else -> throw NotFoundException("Position Not Found")
