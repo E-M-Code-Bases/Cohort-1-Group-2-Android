@@ -2,11 +2,11 @@ package com.example.movies_poa_app.retrofit
 
 import com.example.movies_poa_app.model.MovieResponse
 import com.example.movies_poa_app.model.FavoriteRequest
-import com.example.movies_poa_app.model.MovieDetails
 import com.example.movies_poa_app.model.TrailerResponse
 import retrofit2.Response
 import retrofit2.http.Body
 import retrofit2.http.GET
+import retrofit2.http.Header
 import retrofit2.http.POST
 import retrofit2.http.Path
 import retrofit2.http.Query
@@ -32,29 +32,18 @@ interface ApiService {
 
 
     @GET("account/{account_id}/favorite/movies")
-<<<<<<< HEAD
     suspend fun getFavoriteMovies(@Path("account_id") accountId: String,
                                   @Header("Authorization") authorization: String): Response<MovieResponse>
-=======
 
-    suspend fun getFavoriteMovies(@Path("account_id") accountId: String): Response<MovieResponse>
-   
->>>>>>> d1d5b1e3178c441ee3ab214922b10222ba725601
 
     @POST("account/{account_id}/favorite")
-    suspend fun addFavoriteMovie(@Path("account_id") accountId: Int, @Query("de95d5e165747c38cab2df155c80bcd7") apiKey: String, @Query("session_id") sessionId: String, @Body favoriteRequest: FavoriteRequest): Response<Unit>
+    suspend fun addFavoriteMovie(@Path("account_id") accountId: String,
+                                 @Header("Authorization") authHeader: String,
+                                 @Body favoriteRequest: FavoriteRequest): Response<Unit>
 
-
-    @GET("movie/popular")
+    @GET("movie/now_playing")
     suspend fun getNowPlaying( @Query("language") language: String = "en-US", @Query("page") page: Int = 1): Response<MovieResponse>
 
     @GET("movie/{movie_id}/videos")
-    suspend fun getTrailers(@Path("movie_id") movieId: Int, @Query("de95d5e165747c38cab2df155c80bcd7") apiKey: String): Response<TrailerResponse>
-
-
-    @GET("movie/{movie_id}")
-    suspend fun showDetail(@Path("movie_id") movie_id: Int, @Query("de95d5e165747c38cab2df155c80bcd7")
-    apiKey: String):Response<MovieDetails>
+    suspend fun getTrailers(@Path("movie_id") movieId: Int): Response<TrailerResponse>
 }
-
-
