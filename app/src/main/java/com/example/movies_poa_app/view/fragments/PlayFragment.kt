@@ -14,7 +14,6 @@ import com.example.movies_poa_app.model.Movie
 import com.example.movies_poa_app.repository.MovieRepository
 import com.example.movies_poa_app.retrofit.AppModule
 import com.example.movies_poa_app.viewModel.FavouritesViewModel
-import com.example.movies_poa_app.viewModel.FavouritesViewModelFactory
 import com.squareup.picasso.Callback
 import com.squareup.picasso.Picasso
 
@@ -26,7 +25,7 @@ class PlayFragment : Fragment() {
     private val args by navArgs<PlayFragmentArgs>()
 
     private val viewModel: FavouritesViewModel by viewModels {
-        FavouritesViewModelFactory(MovieRepository(AppModule().apiService()))
+        FavouritesViewModel.FavouritesViewModelFactory(MovieRepository(AppModule().apiService()))
     }
 
     override fun onCreateView(

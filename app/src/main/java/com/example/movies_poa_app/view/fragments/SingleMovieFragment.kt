@@ -35,9 +35,10 @@ class SingleMovieFragment : Fragment() {
                 0 -> "Top Rated"
                 1 -> "Now Playing"
                 2 -> "Upcoming"
-                3 -> "Popular"
+                3 -> "Favourites"
                 4 -> "Trailer"
-                5 -> "Favourites"
+                5 -> "Popular"
+
                 else -> throw Resources.NotFoundException("Tab index not found")
             }
         }.attach()
