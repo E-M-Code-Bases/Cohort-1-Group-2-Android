@@ -3,6 +3,7 @@ package com.example.movies_poa_app.retrofit
 import com.example.movies_poa_app.model.MovieResponse
 import com.example.movies_poa_app.model.FavoriteRequest
 import com.example.movies_poa_app.model.TrailerResponse
+import retrofit2.Call
 import retrofit2.Response
 import retrofit2.http.Body
 import retrofit2.http.GET
@@ -14,9 +15,13 @@ import retrofit2.http.Query
 interface ApiService {
 
     @GET("movie/popular")
-    fun getPopularMovies(
-        @Query("c86b2436b1121f1894caf99d7c17452d") apiKey: String,
+   suspend fun getPopularMovies(
+        @Query("c86b2436b1121f1894caf99d7c17452d") apiKey: String = "c86b2436b1121f1894caf99d7c17452d",
     ):MovieResponse
+   @GET("movie/popular")
+    fun getPopularMovies1(
+        @Query("c86b2436b1121f1894caf99d7c17452d") apiKey: String = "c86b2436b1121f1894caf99d7c17452d",
+    ): Call<MovieResponse>
 
 
     @GET("movie/upcoming")
