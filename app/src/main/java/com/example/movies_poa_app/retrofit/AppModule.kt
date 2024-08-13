@@ -6,7 +6,9 @@ import okhttp3.OkHttpClient
 import okhttp3.Response
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
-val baseUrl = "https://api.themoviedb.org/3/"
+
+
+const val baseUrl = "https://api.themoviedb.org/3/"
 const val API_KEY = "eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJlYWVmZDRlZmVkYjFlOTU2ZTMwMDE0ZDM0Y2U1MThlMyIsIm5iZiI6MTcxOTkyMjc0Mi41NDcwNTgsInN1YiI6IjY2NzEzZjU4OTYyYjg5MDdlOTBkZjQ5ZSIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.HTDnq4slEbwb5YO1DMnPHb62-GjQW1brjiqmY-KXX7U"
 const val account_id = "21334157"
 
