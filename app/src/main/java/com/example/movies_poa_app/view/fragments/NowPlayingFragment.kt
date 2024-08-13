@@ -33,7 +33,7 @@ class NowPlayingFragment : Fragment() {
         val viewModel: NowPlayingViewModel by viewModels {
             NowPlayingProvider(repo)
         }
-        Log.d(TAG, "oyaaaaaaaaaaa")
+        Log.d(TAG, "play")
 
         viewModel.movies.observe(viewLifecycleOwner) { movies ->
             adapter = NowPlayingAdapter(requireContext(), movies)

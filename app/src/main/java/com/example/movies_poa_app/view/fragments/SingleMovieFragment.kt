@@ -2,19 +2,13 @@ package com.example.movies_poa_app.view.fragments
 
 import android.content.res.Resources
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ImageView
 import android.widget.Toast
-import androidx.appcompat.widget.Toolbar
-import androidx.viewpager2.widget.ViewPager2
-import com.example.movies_poa_app.R
+import androidx.fragment.app.Fragment
 import com.example.movies_poa_app.adapters.PagerAdapter
-import com.example.movies_poa_app.databinding.FragmentPlayBinding
 import com.example.movies_poa_app.databinding.FragmentSingleMovieBinding
-import com.google.android.material.tabs.TabLayout
 import com.google.android.material.tabs.TabLayoutMediator
 
 class SingleMovieFragment : Fragment() {

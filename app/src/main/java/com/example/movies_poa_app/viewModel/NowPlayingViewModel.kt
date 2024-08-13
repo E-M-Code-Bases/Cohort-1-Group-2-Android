@@ -15,10 +15,9 @@ class NowPlayingViewModel (private val movieRepository: MovieRepository)  : View
   val movies = MutableLiveData<List<Movie>>()
     private val _moviesError = MutableLiveData<String>()
 
-
     init {
-       fetchNowPlaying()
-   }
+        fetchNowPlaying()
+    }
 
     private fun fetchNowPlaying() {
         viewModelScope.launch {
