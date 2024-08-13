@@ -19,10 +19,10 @@ class TopRatedViewModel(private val movieRepository: MovieRepository) : ViewMode
         fetchTopRatedMovies()
     }
 
-    private fun fetchTopRatedMovies() {
+    private fun fetchTopRatedMovies(apiKey : String = "a46d79ac5127fe803aabf6513cafe146") {
         viewModelScope.launch {
             try {
-                val response = movieRepository.getTopRatedMovies()
+                val response = movieRepository.getTopRatedMovies(apiKey)
                 if (response.isSuccessful) {
                     val movieList = response.body()?.results ?: emptyList()
                     movies.postValue(movieList)
