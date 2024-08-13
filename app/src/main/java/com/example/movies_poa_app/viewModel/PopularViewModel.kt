@@ -17,8 +17,6 @@ class PopularViewModel(private val repository: MovieRepository) : ViewModel() {
     private val _popularMovies = MutableLiveData<List<Movie>>()
     val popularMovies: LiveData<List<Movie>> get() = _popularMovies
 
-    private val _searchQuery = MutableLiveData<String>()
-    val searchQuery: LiveData<String> get() = _searchQuery
 
     private var currentPage = 1
 
