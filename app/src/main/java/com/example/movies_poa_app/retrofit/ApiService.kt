@@ -14,6 +14,13 @@ import retrofit2.http.Query
 
 interface ApiService {
 
+    @GET("movie/top_rated")
+    suspend fun getTopRatedMovies(
+        @Query("api_key") apiKey: String,
+        @Query("language") language: String = "en-US",
+        @Query("page") page: Int = 1
+    ): Response<MovieResponse>
+
     @GET("movie/popular")
    suspend fun getPopularMovies(
         @Query("c86b2436b1121f1894caf99d7c17452d") apiKey: String = "c86b2436b1121f1894caf99d7c17452d",
@@ -32,10 +39,6 @@ interface ApiService {
     suspend fun searchMovies(@Query("c86b2436b1121f1894caf99d7c17452d") apiKey: String, @Query("query") query: String): MovieResponse
 
 
-    @GET("movie/top_rated")
-    suspend fun getTopRatedMovies(): Response<MovieResponse>
-
-
     @GET("account/{account_id}/favorite/movies")
     suspend fun getFavoriteMovies(@Path("account_id") accountId: String,
                                   @Header("Authorization") authorization: String): Response<MovieResponse>
@@ -45,6 +48,8 @@ interface ApiService {
     suspend fun addFavoriteMovie(@Path("account_id") accountId: String,
                                  @Header("Authorization") authHeader: String,
                                  @Body favoriteRequest: FavoriteRequest): Response<Unit>
+
+
 
     @GET("movie/now_playing")
     suspend fun getNowPlaying( @Query("language") language: String = "en-US", @Query("page") page: Int = 1): Response<MovieResponse>

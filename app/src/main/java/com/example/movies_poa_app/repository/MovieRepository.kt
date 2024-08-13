@@ -10,6 +10,11 @@ import retrofit2.Response
 
 class MovieRepository(private val service: ApiService) {
 
+
+    suspend fun getTopRatedMovies(apiKey: String): Response<MovieResponse>{
+        return service.getTopRatedMovies(apiKey)
+    }
+
     suspend fun getPopularMovies(): MovieResponse {
         return service.getPopularMovies()
     }
@@ -19,12 +24,6 @@ class MovieRepository(private val service: ApiService) {
     }
 
     suspend fun getUpcoming(apiKey: String) = service.getUpcoming(apiKey)
-
-
-    suspend fun getTopRatedMovies(): Response<MovieResponse> {
-        ///return null
-        return service.getTopRatedMovies()
-    }
 
    suspend fun getNowPlaying(): Response<MovieResponse>{
        return service.getNowPlaying()
