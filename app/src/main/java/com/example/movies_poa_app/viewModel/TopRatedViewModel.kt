@@ -7,44 +7,41 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.viewModelScope
 import com.example.movies_poa_app.model.Movie
 import com.example.movies_poa_app.repository.MovieRepository
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.delay
-import kotlinx.coroutines.isActive
 import kotlinx.coroutines.launch
 
 class TopRatedViewModel(private val movieRepository: MovieRepository) : ViewModel() {
 
-     val movies = MutableLiveData<List<Movie>>()
-    //val movies: LiveData<List<Movie>> get() = _movies
-
+    val movies = MutableLiveData<List<Movie>>()
     private val _moviesError = MutableLiveData<String>()
-    init{
+    val moviesError: LiveData<String> get() = _moviesError
+
+    init {
         fetchTopRatedMovies()
     }
 
-
     private fun fetchTopRatedMovies() {
         viewModelScope.launch {
-           while (isActive){
-               try {
-                   val response = movieRepository.getTopRatedMovies()
-                   if (response!!.isSuccessful) {
-                       movies.postValue(response.body()?.results ?: emptyList())
-                   } else {
-                       _moviesError.postValue(response.message())
-                   }
-               } catch (e: Exception) {
-                   _moviesError.postValue(e.message ?: "Unknown error occurred")
-               }
-               delay(10000L)
-           }
-
+            try {
+                val response = movieRepository.getTopRatedMovies()
+                if (response.isSuccessful) {
+                    val movieList = response.body()?.results ?: emptyList()
+                    movies.postValue(movieList)
+                } else {
+                    _moviesError.postValue(response.message())
+                }
+            } catch (e: Exception) {
+                _moviesError.postValue(e.message ?: "Unknown error occurred")
+            }
         }
     }
 }
 
-class TopRatedProvider(val movieRepository: MovieRepository ): ViewModelProvider.Factory{
+class TopRatedProvider(private val movieRepository: MovieRepository) : ViewModelProvider.Factory {
+    @Suppress("UNCHECKED_CAST")
     override fun <T : ViewModel> create(modelClass: Class<T>): T {
-        return TopRatedViewModel(movieRepository) as T
+        if (modelClass.isAssignableFrom(TopRatedViewModel::class.java)) {
+            return TopRatedViewModel(movieRepository) as T
+        }
+        throw IllegalArgumentException("Unknown ViewModel class")
     }
 }
