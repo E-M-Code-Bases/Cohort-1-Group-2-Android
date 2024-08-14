@@ -12,7 +12,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         tools:context=".view.fragments.TopRatedFragment"
-        android:background="@drawable/gradient_color_background">
+        android:background="@color/light_grey">
 
     <ScrollView
         android:id="@+id/scrollView"
